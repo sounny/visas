@@ -236,7 +236,7 @@ function setChart(csvData, colorScale){
         .attr("x", 20+leftPadding)
         .attr("y", 40)
         .attr("class", "chartTitle")
-        .text("Percent of USA's " + expressed.toUpperCase() + " production in each state");
+        .text("Visa restriction breakdown for " + expressed.toUpperCase() + ": [***PIE CHART HERE]");
 
     //create vertical axis generator
     var yAxis = d3.axisLeft(yScale);
