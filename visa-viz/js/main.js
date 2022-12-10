@@ -31,13 +31,12 @@ function setMap(){
         .attr("width", window.innerWidth * 0.5)
         .attr("height", 420);
     //create AlbersUSA projection centered on USA
-    var projection = d3.geoMercator()
+    var projection /*= d3.geoMercator()
         .scale((width - 3) / (2 * Math.PI))
-        .translate([width / 2, height / 2]);
-
-                /* = d3.geoAlbersUsa()
+        .translate([width / 2, height / 2]);*/
+                 = d3.geoAlbersUsa()
                     .scale(900)
-                    .translate([387.5,215])*/
+                    .translate([387.5,215]);
     var path = d3.geoPath()
         .projection(projection);
 
