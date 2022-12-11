@@ -56,6 +56,8 @@ function setWorldMap(){
         //pull data from topojson
         var countriesFeature = topojson.feature(countries, countries.objects.countries).features;
         console.log(countriesFeature);
+        var AFGname = countriesFeature[1].properties.ADMIN;
+        console.log(AFGname);
 
     };
         /*
