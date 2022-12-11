@@ -1,7 +1,6 @@
 //global variables
 var countryList = ["Afghanistan","Albania","Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Republic of the Congo", "Democratic Republic of the Congo", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "North Korea", "South Korea", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "São Tomé and Príncipe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Singapore", "Sierra Leone", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"];
-
-var expressed = "corn"; //initial attribute
+var expressed = "United States"; //initial attribute
 var csvData = "";
 //chartFrame dimensions
 var chartWidth = window.innerWidth * 0.425,
@@ -59,7 +58,10 @@ function setWorldMap(){
         //join csv data to JSON enum units
         countriesFeature = joinWorldData(countriesFeature, countryVisaCSV);
         console.log(countriesFeature);
-
+        //create color scale
+        var colorScale = makeColorScale(countryVisaCSV);
+        //add enum units to the map
+        setWorldEnumerationUnits(countriesFeature, map, path, colorScale);
 
         var AFGname = countriesFeature[1].properties.ADMIN;
         console.log(AFGname);
@@ -96,7 +98,33 @@ function joinWorldData(countriesFeature, csvData){
     return countriesFeature;
 };
 
-
+function setWorlEnumerationUnits(countriesFeature, map, path, colorScale) {
+    //add US States to map
+    var countries = map.selectAll(".countries")
+        .data(statesFeature)
+        .enter()
+        .append("path")
+        .attr("class", function(d){
+            return "country " + d.properties.name;
+        })
+        .attr("d", path)
+        .style("fill", function(d){
+            return colorScale(d.properties[expressed]);
+        })
+        .style("stroke", "#000")
+        .style("stroke-width", "1px")
+        .style("stroke-linecap", "round")
+        .on("mouseover", function(d){
+            highlight(d.properties);
+        })
+        .on("mouseout", function(d){
+            dehighlight(d.properties);
+        })
+        .on("mousemove", moveLabel);
+    
+    var desc = states.append("desc")
+        .text('{"stroke": "#000", "stroke-width": "1px"}');
+};
 
 
 
@@ -233,7 +261,7 @@ function setEnumerationUnits(statesFeature, map, path, colorScale) {
 //create color scale generator
 function makeColorScale(data){
     var colorClasses = [
-        "#ffffd4",
+        //"#ffffd4",
         "#fee391",
         "#fec44f",
         "#fe9929",
@@ -426,7 +454,7 @@ function updateChart(bars, n, colorScale) {
 //function to highlight enumeration units and bars
 function highlight(props){
     //change stroke
-    var selected = d3.selectAll("." + props.name)
+    var selected = d3.selectAll("." + props.ID)
         .style("stroke", "red")
         .style("stroke-width", "3.5");
     setLabel(props);
