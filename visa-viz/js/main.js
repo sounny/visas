@@ -30,12 +30,21 @@ function setMap(){
         .attr("class", "map")
         .attr("width", window.innerWidth * 0.5)
         .attr("height", 420);
-    //create AlbersUSA projection centered on USA
+/*    //create AlbersUSA projection centered on USA
     var projection = d3.geoAlbersUsa()
         .scale(900)
-        .translate([387.5,215])
+        .translate([387.5,215]) */
+    //create Mercador projection centered on 0,0
+       var projection = d3.geoMercator()
+       .geoMercator()
+       .scale(width / 2.5 / Math.PI)
+       .rotate([0, 0])
+       .center([0, 0])
+       .translate([width / 2, height / 2]);
     var path = d3.geoPath()
         .projection(projection);
+ 
+    
 
     //////// QUEUE BLOCKS ////////
     var promises = [];
