@@ -59,8 +59,8 @@ function setWorldMap(){
         var AFGname = countriesFeature[1].properties.ADMIN;
         console.log(AFGname);
         //join csv data to JSON enum units
-        statesFeature = joinData(countriesFeature, countryVisaCSV);
-
+        countriesFeature = joinData(countriesFeature, countryVisaCSV);
+        console.log(countriesFeature);
 
     };
         /*
