@@ -59,7 +59,7 @@ function setWorldMap(){
         countriesFeature = joinWorldData(countriesFeature, countryVisaCSV);
         console.log(countriesFeature);
         //create color scale
-        var colorScale = makeColorScale(countryVisaCSV);
+        var colorScale = makeWorldColorScale(countryVisaCSV);
         //add enum units to the map
         setWorldEnumerationUnits(countriesFeature, map, path, colorScale);
 
@@ -125,6 +125,41 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
     var desc = states.append("desc")
         .text('{"stroke": "#000", "stroke-width": "1px"}');
 };
+
+//create color scale generator
+function makeWorldColorScale(data){
+    var colorClasses = [
+        "#ffffd4",
+        "#fee391",
+        "#fec44f",
+        "#fe9929",
+        "#d95f0e",
+        "#993404"
+    ];
+
+    //EQUAL INTERVAL
+
+    //create color scale generator
+    var colorScale = d3.scaleQuantile()
+    .range(colorClasses);
+
+    //build two-value array of minimum and maximum expressed attribute values
+    var minmax = [
+        d3.min(data, function(d) { return parseFloat(d[expressed]); }),
+        d3.max(data, function(d) { return parseFloat(d[expressed]); })
+    ];
+    //assign two-value array as scale domain
+    colorScale.domain(minmax);
+
+    return colorScale;
+};
+
+
+
+
+
+
+
 
 
 
@@ -261,7 +296,7 @@ function setEnumerationUnits(statesFeature, map, path, colorScale) {
 //create color scale generator
 function makeColorScale(data){
     var colorClasses = [
-        //"#ffffd4",
+        "#ffffd4",
         "#fee391",
         "#fec44f",
         "#fe9929",
@@ -269,6 +304,7 @@ function makeColorScale(data){
         "#993404"
     ];
 
+    
     // QUANTILE
     var colorScale = d3.scaleQuantile()
         .range(colorClasses);
