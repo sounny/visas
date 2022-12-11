@@ -51,6 +51,10 @@ function setWorldMap(){
         countries = data[1];
         setGraticule(map, path);
 
+        //pull data from topojson
+        var countriesFeature = topojson.feature(countries, countries.objects.states).features;
+        console.log(countriesFeature);
+
 
         /*
     var width = 960;
