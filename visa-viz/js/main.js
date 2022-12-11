@@ -59,7 +59,7 @@ function setWorldMap(){
         countriesFeature = joinWorldData(countriesFeature, countryVisaCSV);
         console.log(countriesFeature);
         //create color scale
-        var colorScale = makeWorldColorLevel(countryVisaCSV);
+        var colorScale = makeWorldColorLevels(countryVisaCSV);
         //add enum units to the map
         setWorldEnumerationUnits(countriesFeature, map, path, colorScale);
 
