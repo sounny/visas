@@ -18,10 +18,41 @@ var yScale = d3.scaleLinear()
 
 
 //begin when window loads
-window.onload = setMap();
+//window.onload = setMap();
+window.onload = setWorldMap();
 
 //set up World map
 function setWorldMap(){
+
+    //////// MAP, PROJECTION, PATH ////////
+    //map frame - add new map svg
+    var map = d3.select("body")
+        .append("svg")
+        .attr("class", "map")
+        .attr("width", window.innerWidth * 0.5)
+        .attr("height", 420);
+    //projection
+    var projection = d3.geoMercator()
+        .scale((window.innerWidth * 0.5 - 3) / (2 * Math.PI))
+        .translate([window.innerWidth * 0.5 / 2, 420 / 2]);
+    //path
+    var path = d3.geoPath()
+        .projection(projection);
+
+    //////// QUEUE BLOCKS ////////
+    var promises = [];
+    promises.push(d3.csv("data/countryVisaTransposedCSV.csv"));
+    promises.push(d3.json("data/countriesTOPO.json"));
+    Promise.all(promises).then(callback);
+
+    // begin map/chart setup in callback
+    function callback(data){
+        countryVisaCSV = data[0];
+        countries = data[1];
+        setGraticule(map, path);
+
+
+        /*
     var width = 960;
     var height = 500;
     
@@ -39,7 +70,7 @@ function setWorldMap(){
     d3.json(url, function(err, geojson) {
       svg.append("path")
         .attr("d", path(geojson))
-    })
+    })  */
     
 }
 
