@@ -66,7 +66,7 @@ function setMap(){
         .attr("width", window.innerWidth * 0.5)
         .attr("height", 420);
     //create AlbersUSA projection centered on USA
-    var projection = d3.geoAlbersUsa()
+    var projection = d3.geoMercator()//d3.geoAlbersUsa()
         .scale(900)
         .translate([387.5,215])
     var path = d3.geoPath()
