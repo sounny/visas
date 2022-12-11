@@ -101,11 +101,11 @@ function joinWorldData(countriesFeature, csvData){
 function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
     //add US States to map
     var countries = map.selectAll(".countries")
-        .data(statesFeature)
+        .data(countriesFeature)
         .enter()
         .append("path")
         .attr("class", function(d){
-            return "country " + d.properties.name;
+            return "country " + d.properties.ADMIN;
         })
         .attr("d", path)
         .style("fill", function(d){
