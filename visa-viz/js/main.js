@@ -39,16 +39,18 @@ function setMap(){
 
     //////// QUEUE BLOCKS ////////
     var promises = [];
-    promises.push(d3.csv("data/cropDataCSV.csv")); //load attributes from csv
-    promises.push(d3.json("data/UsaStatesTopoJson5.topojson")); //load choropleth spatial data
     promises.push(d3.csv("data/VisaDataCSV.csv"));
     promises.push(d3.json("data/countriesTOPO.json"));
+    promises.push(d3.csv("data/cropDataCSV.csv")); //load attributes from csv
+    promises.push(d3.json("data/UsaStatesTopoJson5.topojson")); //load choropleth spatial data
     Promise.all(promises).then(callback);
 
     // begin map/chart setup in callback
     function callback(data){
-        csvData = data[0];
-        usaStates = data[1];
+        visaCSV = data[0];
+        countries = data[1];
+        csvData = data[2];
+        usaStates = data[3];
         setGraticule(map, path);
 
         //pull data from topojson
@@ -268,7 +270,7 @@ function createDropdown(){
     var titleOption = dropdown.append("option")
         .attr("class", "titleOption")
         .attr("disabled", "true")
-        .text("Select Attribute");
+        .text("Select one");
 
     //add attribute name options
     var attrOptions = dropdown.selectAll("attrOptions")
