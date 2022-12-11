@@ -122,7 +122,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         })
         .on("mousemove", moveLabel);
     
-    var desc = states.append("desc")
+    var desc = countries.append("desc")
         .text('{"stroke": "#000", "stroke-width": "1px"}');
 };
 
