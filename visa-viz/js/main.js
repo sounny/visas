@@ -59,7 +59,7 @@ function setWorldMap(){
         countriesFeature = joinWorldData(countriesFeature, countryVisaCSV);
         console.log(countriesFeature);
         //create color scale
-        var colorScale = makeWorldColorScale(countryVisaCSV);
+        var colorScale = makeWorldColorLevel(countryVisaCSV);
         //add enum units to the map
         setWorldEnumerationUnits(countriesFeature, map, path, colorScale);
 
@@ -109,7 +109,8 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         })
         .attr("d", path)
         .style("fill", function(d){
-            return colorScale(d.properties[expressed]);
+            //return colorScale(d.properties[expressed]);
+            return colorScale[d.properties[expressed]];
         })
         .style("stroke", "#000")
         .style("stroke-width", "1px")
@@ -127,6 +128,14 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
 };
 
 //create color scale generator
+function makeWorldColorLevels(data){
+    return ["#ffffd4",
+        "#fee391",
+        "#fec44f",
+        "#fe9929",
+        "#d95f0e",
+        "#993404"];
+};
 function makeWorldColorScale(data){
     var colorClasses = [
         "#ffffd4",
