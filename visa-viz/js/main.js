@@ -47,7 +47,7 @@ function setMap(){
 
     // begin map/chart setup in callback
     function callback(data){
-        visaCSV = data[0];
+        countryVisaCSV = data[0];
         countries = data[1];
         csvData = data[2];
         usaStates = data[3];
