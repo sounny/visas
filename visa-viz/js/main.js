@@ -31,12 +31,9 @@ function setMap(){
         .attr("width", window.innerWidth * 0.5)
         .attr("height", 420);
     //create AlbersUSA projection centered on USA
-    var projection /*= d3.geoMercator()
-        .scale((width - 3) / (2 * Math.PI))
-        .translate([width / 2, height / 2]);*/
-                 = d3.geoAlbersUsa()
-                    .scale(900)
-                    .translate([387.5,215]);
+    var projection = d3.geoAlbersUsa()
+        .scale(900)
+        .translate([387.5,215])
     var path = d3.geoPath()
         .projection(projection);
 
@@ -44,6 +41,8 @@ function setMap(){
     var promises = [];
     promises.push(d3.csv("data/cropDataCSV.csv")); //load attributes from csv
     promises.push(d3.json("data/UsaStatesTopoJson5.topojson")); //load choropleth spatial data
+    promises.push(d3.csv("data/"));
+    promises.push(d3.json("data/countriesTOPO.json"));
     Promise.all(promises).then(callback);
 
     // begin map/chart setup in callback
@@ -71,7 +70,7 @@ function setMap(){
 //////// GRATICULE ////////
 function setGraticule(map, path) {
     var graticule = d3.geoGraticule()
-        .step([10, 10]); //place graticule lines every 10 degrees of longitude and latitude
+        .step([5, 5]); //place graticule lines every 5 degrees of longitude and latitude
     // graticule background
     var gratBackground = map.append("path")
         .datum(graticule.outline()) //bind graticule background
