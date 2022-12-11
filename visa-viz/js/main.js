@@ -105,7 +105,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         .enter()
         .append("path")
         .attr("class", function(d){
-            return "country " + d.properties.ADMIN;
+            return "country " + d.properties.ID;
         })
         .attr("d", path)
         .style("fill", function(d){
