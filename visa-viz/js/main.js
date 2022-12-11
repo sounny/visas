@@ -18,8 +18,8 @@ var yScale = d3.scaleLinear()
 
 
 //begin when window loads
-//window.onload = setMap();
-window.onload = setWorldMap();
+window.onload = setMap();
+//window.onload = setWorldMap();
 
 //set up World map
 function setWorldMap(){
