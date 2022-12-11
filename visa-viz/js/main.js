@@ -92,6 +92,8 @@ function joinWorldData(countriesFeature, csvData){
 
         };
     };
+
+    return countriesFeature;
 };
 
 
