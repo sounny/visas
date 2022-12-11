@@ -98,7 +98,7 @@ function joinWorldData(countriesFeature, csvData){
     return countriesFeature;
 };
 
-function setWorlEnumerationUnits(countriesFeature, map, path, colorScale) {
+function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
     //add US States to map
     var countries = map.selectAll(".countries")
         .data(statesFeature)
