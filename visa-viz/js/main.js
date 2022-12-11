@@ -148,7 +148,7 @@ function setMap(){
 //////// GRATICULE ////////
 function setGraticule(map, path) {
     var graticule = d3.geoGraticule()
-        .step([5, 5]); //place graticule lines every 5 degrees of longitude and latitude
+        .step([10, 10]); //place graticule lines every 10 degrees of longitude and latitude
     // graticule background
     var gratBackground = map.append("path")
         .datum(graticule.outline()) //bind graticule background
