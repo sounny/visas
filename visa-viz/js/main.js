@@ -20,6 +20,41 @@ var yScale = d3.scaleLinear()
 //begin when window loads
 window.onload = setMap();
 
+//set up World map
+function setWorldMap(){
+    var width = 960;
+    var height = 500;
+    
+    var svg = d3.select("body").append("svg")
+    
+    var projection = d3.geoMercator()
+      .scale(width / 2 / Math.PI)
+      //.scale(100)
+      .translate([width / 2, height / 2])
+
+    var path = d3.geoPath()
+      .projection(projection);
+    
+    var url = "http://enjalot.github.io/wwsd/data/world/world-110m.geojson";
+    d3.json(url, function(err, geojson) {
+      svg.append("path")
+        .attr("d", path(geojson))
+    })
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 //set up choropleth map
 function setMap(){
 
@@ -30,17 +65,10 @@ function setMap(){
         .attr("class", "map")
         .attr("width", window.innerWidth * 0.5)
         .attr("height", 420);
-/*    //create AlbersUSA projection centered on USA
+    //create AlbersUSA projection centered on USA
     var projection = d3.geoAlbersUsa()
         .scale(900)
-        .translate([387.5,215]) */
-    //create Mercador projection centered on 0,0
-       var projection = d3.geoMercator()
-       .geoMercator()
-       .scale(width / 2.5 / Math.PI)
-       .rotate([0, 0])
-       .center([0, 0])
-       .translate([width / 2, height / 2]);
+        .translate([387.5,215])
     var path = d3.geoPath()
         .projection(projection);
  
