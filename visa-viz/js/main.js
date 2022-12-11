@@ -57,7 +57,7 @@ function setWorldMap(){
         var countriesFeature = "countries...";//topojson.feature(countries, countries.objects.states).features;
         console.log(countriesFeature);
 
-
+    };
         /*
     var width = 960;
     var height = 500;
