@@ -18,8 +18,6 @@ var yScale = d3.scaleLinear()
 
 
 //begin when window loads
-var startMessage = "attempting to start map";
-console.log(startMessage);
 //window.onload = setMap();
 window.onload = setWorldMap();
 
@@ -56,36 +54,45 @@ function setWorldMap(){
         //pull data from topojson
         var countriesFeature = topojson.feature(countries, countries.objects.countries).features;
         console.log(countriesFeature);
-        var AFGname = countriesFeature[1].properties.ADMIN;
-        console.log(AFGname);
+  
         //join csv data to JSON enum units
-        countriesFeature = joinData(countriesFeature, countryVisaCSV);
+        countriesFeature = joinWorldData(countriesFeature, countryVisaCSV);
         console.log(countriesFeature);
 
+
+        var AFGname = countriesFeature[1].properties.ADMIN;
+        console.log(AFGname);
+
     };
-        /*
-    var width = 960;
-    var height = 500;
-    
-    var svg = d3.select("body").append("svg")
-    
-    var projection = d3.geoMercator()
-      .scale(width / 2 / Math.PI)
-      //.scale(100)
-      .translate([width / 2, height / 2])
 
-    var path = d3.geoPath()
-      .projection(projection);
     
-    var url = "http://enjalot.github.io/wwsd/data/world/world-110m.geojson";
-    d3.json(url, function(err, geojson) {
-      svg.append("path")
-        .attr("d", path(geojson))
-    })  */
-    
-}
+};
+
+function joinWorldData(countriesFeature, csvData){
+    var matchesFound = 0;
+    //loop thru csv, assign attributes to json states
+    for (var i=0; i<csvData.length; i++){
+        var csvCountry = csvData[i]; //the current state
+        var csvKey = csvCountry.ID; //the CSV state name //was the CSV primary key
+
+        //loop thru json states to find matching csv state
+        for (var a=0; a<countriesFeature.length; a++){
+            var geojsonProps = countriesFeature[a].properties; //the current state geojson properties
+            var geojsonKey = geojsonProps.ADMIN; //the geojson key-> the stateFeature Name
+        
+           //when keys match, add csv data to json object's properties
+           if (geojsonKey == csvKey){
+                //assign all attributes and values
+                attrArray.forEach(function(attr){
+                    var val = parseFloat(csvCountry[attr]); //get csv attribute value
+                    geojsonProps[attr] = val; //assign attribute and value to geojson properties
+                });
+            };
 
 
+        };
+    };
+};
 
 
 
