@@ -41,7 +41,7 @@ function setMap(){
     var promises = [];
     promises.push(d3.csv("data/cropDataCSV.csv")); //load attributes from csv
     promises.push(d3.json("data/UsaStatesTopoJson5.topojson")); //load choropleth spatial data
-    promises.push(d3.csv("data/"));
+    promises.push(d3.csv("data/VisaDataCSV.csv"));
     promises.push(d3.json("data/countriesTOPO.json"));
     Promise.all(promises).then(callback);
 
