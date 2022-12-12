@@ -41,7 +41,7 @@ function setWorldMap(){
 
     //////// QUEUE BLOCKS ////////
     var promises = [];
-    promises.push(d3.csv("data/countryVisaTransposedCSV.csv"));
+    promises.push(d3.csv("data/VisaDataCSV.csv"));
     promises.push(d3.json("data/countriesTOPO.json"));
     Promise.all(promises).then(callback);
 
