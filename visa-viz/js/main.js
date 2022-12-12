@@ -523,7 +523,7 @@ function setLabel(props){
     visaNum = props[expressed];
     var labelAttribute = "Citizen from: <b>"+expressed+"</b>"
         + "<br>Visiting: <b>"+props.ADMIN+"</b>"
-        + "<br><b><visatext"+visaNum+">"+visaCode(visaNum)+"</visatext"+visaNum+">"+"</b>";
+        + "<br><b><div class='visatext"+visaNum+"'>"+visaCode(visaNum)+"</div>"+"</b>";
     if(visaNum==0) {
         labelAttribute = "<h1>"+props.ADMIN+"</h1>";
     }
