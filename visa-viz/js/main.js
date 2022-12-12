@@ -540,7 +540,10 @@ function dehighlight(props){
 
 function setLabel(props){
     //label content
-    var labelAttribute = expressed + " citizen visiting " + props.ADMIN + ": " + "<h1>"+visaCode(props[expressed])+"</h1>"
+    var labelAttribute = "Citizen from: <b>"+expressed+"</b>"
+        + "<br>Visiting: <b>"+props.ADMIN+"</b>"
+        + "<br><b>"+visaCode(props[expressed])+"</b>";
+    //expressed + " citizen visiting " + props.ADMIN + ": " + "<h1>"+visaCode(props[expressed])+"</h1>"
     //"<h1>" + props[expressed] + "%</h1>of <b>" + props.ADMIN + "</b> production";
 
     //create info label div
