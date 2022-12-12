@@ -586,4 +586,13 @@ function visaCode(visaNum) {
 
 function selectOrigin(props) {
     console.log(props.ADMIN);
+
+    expressed=props.ADMIN;
+    setWorldMap;
+    /*
+    //recolor enumeration units
+    var countries = d3.selectAll(".countries")
+    .style("fill", function(d){
+        return choropleth(d.properties, colorScale)
+    });*/
 }
