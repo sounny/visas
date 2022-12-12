@@ -508,7 +508,7 @@ function updateChart(bars, n, colorScale) {
 //function to highlight enumeration units and bars
 function highlight(props){
     //change stroke
-    var selected = d3.selectAll("." + props.ID)
+    var selected = d3.selectAll("." + props.ADMIN)
         .style("stroke", "light-blue")
         .style("stroke-width", "2");
     setLabel(props);
@@ -516,7 +516,7 @@ function highlight(props){
 
 //function to reset the element style on mouseout
 function dehighlight(props){
-    var selected = d3.selectAll("." + props.name)
+    var selected = d3.selectAll("." + props.ADMIN)
         .style("stroke", function(){
             return getStyle(this, "stroke")
         })
@@ -540,9 +540,13 @@ function dehighlight(props){
 
 function setLabel(props){
     //label content
+    visaNum = props[expressed];
     var labelAttribute = "Citizen from: <b>"+expressed+"</b>"
         + "<br>Visiting: <b>"+props.ADMIN+"</b>"
-        + "<br><b>"+visaCode(props[expressed])+"</b>";
+        + "<br><b>"+visaCode(visaNum)+"</b>";
+    if(visaNum==0) {
+        labelAttribute = "<h1>"+props.ADMIN+"</h1>";
+    }
     //expressed + " citizen visiting " + props.ADMIN + ": " + "<h1>"+visaCode(props[expressed])+"</h1>"
     //"<h1>" + props[expressed] + "%</h1>of <b>" + props.ADMIN + "</b> production";
 
