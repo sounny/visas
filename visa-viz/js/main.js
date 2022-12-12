@@ -124,7 +124,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
             dehighlight(d.properties);
         })
         .on("click", function(d){
-            selectOrigin(d.properties);
+            selectOrigin(d.properties, countriesFeature, map, path, colorScale);
         })
         .on("mousemove", moveLabel)
         ;
@@ -140,7 +140,7 @@ function makeWorldColorLevels(data){
         "#fecc5c",
         "#fd8d3c",
         "#f03b20",
-        "#bd0026"];
+        "#5A5A5A"];
 };
 
 
@@ -584,11 +584,12 @@ function visaCode(visaNum) {
     };
 }
 
-function selectOrigin(props) {
+function selectOrigin(props, countriesFeature, map, path, colorScale) {
     console.log(props.ADMIN);
 
     expressed=props.ADMIN;
-    setWorldMap();
+    //setWorldMap();
+    setWorldEnumerationUnits(countriesFeature, map, path, colorScale);
     /*
     //recolor enumeration units
     var countries = d3.selectAll(".countries")
