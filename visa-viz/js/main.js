@@ -104,7 +104,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         .enter()
         .append("path")
         .attr("class", function(d){
-            return "country " + d.properties.ID;
+            return d.properties.ADMIN;
         })
         .attr("d", path)
         .style("fill", function(d){
@@ -537,9 +537,10 @@ function setLabel(props){
         .attr("id", props.name + "_label")
         .html(labelAttribute);
 
+        /*
     var stateName = infolabel.append("div")
         .attr("class", "labelname")
-        .html(props.name);
+        .html(props.name);*/
 };
 
 function moveLabel(){
