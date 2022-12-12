@@ -35,8 +35,6 @@ function setWorldMap(){
     var projection = d3.geoEquirectangular()
         .scale((window.innerWidth * 0.5 - 3) / (2 * Math.PI))
         .translate([window.innerWidth * 0.5 / 2, 420 / 2]);
-        //.scale(window.innerHeight / Math.PI)
-        //.translate([window.innerWidth / 2, window.innerHeight / 2]);
     //path
     var path = d3.geoPath()
         .projection(projection);
@@ -131,7 +129,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
 
 //create color scale generator
 function makeWorldColorLevels(data){
-    return ["#111111",
+    return ["#98FB98",
         "#ffffb2",
         "#fecc5c",
         "#fd8d3c",
@@ -164,7 +162,6 @@ function makeWorldColorScale(data){
 
     return colorScale;
 };
-//,{"arcs":[[299]],"type":"Polygon","properties":{"ADMIN":"Greenland","ISO_A3":"GRL"}}
 
 
 
@@ -498,12 +495,22 @@ function updateChart(bars, n, colorScale) {
     setMap();
 };
 
+
+
+
+
+
+
+
+
+
+
 //function to highlight enumeration units and bars
 function highlight(props){
     //change stroke
     var selected = d3.selectAll("." + props.ID)
-        .style("stroke", "red")
-        .style("stroke-width", "3.5");
+        .style("stroke", "light-blue")
+        .style("stroke-width", "2");
     setLabel(props);
 };
 
@@ -533,8 +540,8 @@ function dehighlight(props){
 
 function setLabel(props){
     //label content
-    var labelAttribute = "<h1>" + (Math.ceil(props[expressed]* 100) / 100) +
-        "%</h1>of <b>" + expressed + "</b> production";
+    var labelAttribute = expressed + " citizen visiting " + props.ADMIN + ": " + "<h1>"+visaCode(props[expressed])+"</h1>"
+    //"<h1>" + props[expressed] + "%</h1>of <b>" + props.ADMIN + "</b> production";
 
     //create info label div
     var infolabel = d3.select("body")
@@ -570,3 +577,22 @@ function moveLabel(){
         .style("left", x + "px")
         .style("top", y + "px");
 };
+
+function visaCode(visaNum) {
+    switch(visaNum) {
+        case 0:
+            return "Origin Country";
+        case 1:
+            return "Visa not required";
+        case 2:
+            return "eVisa";
+        case 3:
+            return "Visa on arrival";
+        case 4:
+            return "Visa required";
+        case 5:
+            return "Admission restricted";
+        default:
+            return "missing data";
+    };
+}
