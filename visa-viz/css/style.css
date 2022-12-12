@@ -4,19 +4,20 @@
 }
 
 #visatext1 {
-    color: #ffffb2;
+    color: #fef0d9;
 }
 #visatext2 {
-    color: #fecc5c;
+    color: #fdcc8a;
 }
 #visatext3 {
-    color: #fd8d3c;
+    color: #fc8d59;
 }
 #visatext4 {
-    color: #f03b20;
+    color: #d7301f;
 }
 #visatext5 {
-    color: #5A5A5A;
+    color: #000000;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 
