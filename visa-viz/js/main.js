@@ -124,10 +124,11 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         .on("mouseout", function(d){
             dehighlight(d.properties);
         })
-        .on("mousemove", moveLabel)
-        .on("onclick", fuction(d){
+        .on("onclick", function(d){
             selectOrigin(d.properties);
-        });
+        })
+        .on("mousemove", moveLabel)
+        ;
     
     var desc = countries.append("desc")
         .text('{"stroke": "#000", "stroke-width": "1px"}');
