@@ -129,7 +129,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
 
 //create color scale generator
 function makeWorldColorLevels(data){
-    return ["#000000",
+    return ["#111111",
         "#ffffb2",
         "#fecc5c",
         "#fd8d3c",
@@ -162,7 +162,7 @@ function makeWorldColorScale(data){
 
     return colorScale;
 };
-
+//,{"arcs":[[299]],"type":"Polygon","properties":{"ADMIN":"Greenland","ISO_A3":"GRL"}}
 
 
 
