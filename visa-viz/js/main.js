@@ -32,9 +32,11 @@ function setWorldMap(){
         .attr("width", window.innerWidth * 0.5)
         .attr("height", 420);
     //projection
-    var projection = d3.geoMercator()
-        .scale((window.innerWidth * 0.5 - 3) / (2 * Math.PI))
-        .translate([window.innerWidth * 0.5 / 2, 420 / 2]);
+    var projection = d3.geoEquirectangular()
+        //.scale((window.innerWidth * 0.5 - 3) / (2 * Math.PI))
+        //.translate([window.innerWidth * 0.5 / 2, 420 / 2]);
+        .scale(window.innerHeight / Math.PI)
+        .translate([window.innerWidth / 2, window.innerHeight / 2]);
     //path
     var path = d3.geoPath()
         .projection(projection);
