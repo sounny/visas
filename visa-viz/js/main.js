@@ -588,7 +588,7 @@ function selectOrigin(props) {
     console.log(props.ADMIN);
 
     expressed=props.ADMIN;
-    setWorldMap;
+    setWorldMap();
     /*
     //recolor enumeration units
     var countries = d3.selectAll(".countries")
