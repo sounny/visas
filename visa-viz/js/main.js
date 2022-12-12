@@ -18,7 +18,6 @@ var yScale = d3.scaleLinear()
 
 
 //begin when window loads
-//window.onload = setMap();
 window.onload = setWorldMap();
 
 //set up World map
@@ -124,7 +123,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         .on("mouseout", function(d){
             dehighlight(d.properties);
         })
-        .on("onclick", function(d){
+        .on("click", function(d){
             selectOrigin(d.properties);
         })
         .on("mousemove", moveLabel)
@@ -524,7 +523,7 @@ function setLabel(props){
     visaNum = props[expressed];
     var labelAttribute = "Citizen from: <b>"+expressed+"</b>"
         + "<br>Visiting: <b>"+props.ADMIN+"</b>"
-        + "<br><b><visaText"+visaNum+">"+visaCode(visaNum)+"<visaText"+visaNum+">"+"</b>";
+        + "<br><b><visaText"+visaNum+">"+visaCode(visaNum)+"</visaText"+visaNum+">"+"</b>";
     if(visaNum==0) {
         labelAttribute = "<h1>"+props.ADMIN+"</h1>";
     }
