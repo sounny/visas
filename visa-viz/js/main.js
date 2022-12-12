@@ -53,7 +53,6 @@ function setWorldMap(){
 
         //pull data from topojson
         var countriesFeature = topojson.feature(countries, countries.objects.countries).features;
-        console.log(countriesFeature);
   
         //join csv data to JSON enum units
         countriesFeature = joinWorldData(countriesFeature, countryVisaCSV);
@@ -89,12 +88,13 @@ function joinWorldData(countriesFeature, csvData){
                 countryList.forEach(function(attr){
                     var val = parseFloat(csvCountry[attr]); //get csv attribute value
                     geojsonProps[attr] = val; //assign attribute and value to geojson properties
+                    matchesFound++;
                 });
             };
 
         };
     };
-
+    console.log("matches: "+matchesFound);
     return countriesFeature;
 };
 
