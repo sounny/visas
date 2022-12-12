@@ -1,6 +1,6 @@
 //global variables
 var countryList = ["Afghanistan","Albania","Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Republic of the Congo", "Democratic Republic of the Congo", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "North Korea", "South Korea", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "São Tomé and Príncipe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Singapore", "Sierra Leone", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"];
-var expressed = "China"; //initial attribute
+var expressed = "Saudi Arabia "; //initial attribute
 var csvData = "";
 //chartFrame dimensions
 var chartWidth = window.innerWidth * 0.425,
@@ -109,8 +109,11 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         })
         .attr("d", path)
         .style("fill", function(d){
-            //return colorScale(d.properties[expressed]);
-            return colorScale[d.properties[expressed]];
+            if(!expressed)
+                return "D3D3D3";
+            else
+                return colorScale[d.properties[expressed]]
+            ;
         })
         .style("stroke", "#000")
         .style("stroke-width", "1px")
@@ -121,7 +124,10 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         .on("mouseout", function(d){
             dehighlight(d.properties);
         })
-        .on("mousemove", moveLabel);
+        .on("mousemove", moveLabel)
+        .on("onclick", fuction(d){
+            selectOrigin(d.properties);
+        });
     
     var desc = countries.append("desc")
         .text('{"stroke": "#000", "stroke-width": "1px"}');
@@ -135,32 +141,6 @@ function makeWorldColorLevels(data){
         "#fd8d3c",
         "#f03b20",
         "#bd0026"];
-};
-function makeWorldColorScale(data){
-    var colorClasses = [
-        "#ffffd4",
-        "#fee391",
-        "#fec44f",
-        "#fe9929",
-        "#d95f0e",
-        "#993404"
-    ];
-
-    //EQUAL INTERVAL
-
-    //create color scale generator
-    var colorScale = d3.scaleQuantile()
-    .range(colorClasses);
-
-    //build two-value array of minimum and maximum expressed attribute values
-    var minmax = [
-        d3.min(data, function(d) { return parseFloat(d[expressed]); }),
-        d3.max(data, function(d) { return parseFloat(d[expressed]); })
-    ];
-    //assign two-value array as scale domain
-    colorScale.domain(minmax);
-
-    return colorScale;
 };
 
 
@@ -543,7 +523,7 @@ function setLabel(props){
     visaNum = props[expressed];
     var labelAttribute = "Citizen from: <b>"+expressed+"</b>"
         + "<br>Visiting: <b>"+props.ADMIN+"</b>"
-        + "<br><b>"+visaCode(visaNum)+"</b>";
+        + "<br><b><visaText"+visaNum+">"+visaCode(visaNum)+"<visaText"+visaNum+">"+"</b>";
     if(visaNum==0) {
         labelAttribute = "<h1>"+props.ADMIN+"</h1>";
     }
@@ -602,4 +582,8 @@ function visaCode(visaNum) {
         default:
             return "missing data";
     };
+}
+
+function selectOrigin(props) {
+    console.log(props.ADMIN);
 }
