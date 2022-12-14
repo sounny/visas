@@ -46,9 +46,8 @@ function setWorldMap(){
     /*origin.on("change", function(d){
         console.log(origin.getAttribute("value"));
     });*/
-    origin.setAttribute("onchange", function(d){
-        return changeOrigin("new country");
-    });
+    origin.onchange = changeOrigin('new country');
+    //origin.setAttribute("onchange", "changeOrigin('new country')");
     destination.disabled = true;
     destination.color = "dark grey";
     //document.getElementById("header").width = window.innerWidth * 0.9;
