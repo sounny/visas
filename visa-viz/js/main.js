@@ -43,12 +43,7 @@ function setWorldMap(){
         })*/
         origin.insertBefore(option,origin.lastChild);
     }
-    /*origin.on("change", function(d){
-        console.log(origin.getAttribute("value"));
-    });*/
-    //origin.onchange = changeOrigin('new country');
-    //document.getElementById("originSelect").onchange = changeOrigin('new country');
-    //origin.setAttribute("onchange", "changeOrigin('new country')");
+
     destination.disabled = true;
     destination.color = "dark grey";
     //document.getElementById("header").width = window.innerWidth * 0.9;
@@ -100,9 +95,9 @@ function setWorldMap(){
     
 };
 
-function changeOrigin(origin) {
+function changeOrigin(randomString) {
     console.log("changing origin to:");
-    console.log(origin.value);
+    console.log(origin.getAttribute("value"));
     return "completed";
 }
 
