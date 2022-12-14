@@ -89,12 +89,11 @@ function setWorldMap(){
     
 };
 
-function changeOrigin(randomString) {
-    console.log("changing origin to:");
-    origin = document.getElementById("originSelect");
-    console.log(origin.getAttribute("value"));
+function changeOrigin() {
+    //console.log("changing origin to:");
+    //origin = document.getElementById("originSelect");
     console.log(origin.value);
-    return "completed";
+    //return "completed";
 }
 
 function joinWorldData(countriesFeature, csvData){
