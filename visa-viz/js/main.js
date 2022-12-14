@@ -23,12 +23,20 @@ window.onload = setWorldMap();
 //set up World map
 function setWorldMap(){
 
+    //////// HEADER //////////
+    var header = d3.select("head")
+        .append("div")
+        .attr("class", "header")
+        .attr("width", window.innerWidth)
+        .attr("height", window.innerHeight)
+        .attr("content", "Visa Visualizer")
+
     //////// MAP, PROJECTION, PATH ////////
     //map frame - add new map svg
     var map = d3.select("body")
         .append("svg")
         .attr("class", "map")
-        .attr("width", window.innerWidth * 0.5)
+        .attr("width", window.innerWidth)
         .attr("height", 420);
     //projection
     var projection = d3.geoEquirectangular()
