@@ -24,16 +24,10 @@ window.onload = setWorldMap();
 function setWorldMap(){
 
     //////// HEADER //////////
-    document.getElementById("header").innerHTML = "Visa Visualizer";
+    header = document.getElementById("header");
+    header.innerHTML = "Visa Visualizer";
     //document.getElementById("header").width = window.innerWidth * 0.9;
     //document.getElementById("haeder").height = window.innerHeight * 0.9;
-    
-    /*var header = d3.select("body")
-        .append("div")
-        .attr("class", "header")
-        .attr("width", window.innerWidth)
-        .attr("height", window.innerHeight)
-        .attr("content", "Visa Visualizer")*/
 
     //////// MAP, PROJECTION, PATH ////////
     //map frame - add new map svg
