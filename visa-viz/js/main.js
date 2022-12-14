@@ -4,8 +4,9 @@ var expressed = "Malaysia"; //initial attribute
 var csvData = "";
 ////global html elements
 header = document.getElementById("header");
-origin = document.getElementById("originInput");
+origin = document.getElementById("originSelect");//document.getElementById("originInput");
 destination = document.getElementById("destinationInput");
+
 //chartFrame dimensions
 var chartWidth = window.innerWidth * 0.425,
     chartHeight = 473,
@@ -29,7 +30,14 @@ function setWorldMap(){
 
     //////// HEADER and INPUTS changes //////////
     header.innerHTML = "Visa Visualizer";
+    for(var i = 0; i < countryList.length; i++) {
+        var option = document.createElement("OPTION"),
+            txt = document.createTextNode(countryList[i]);
+        option.appendChild(txt);
+        origin.insertBefore(option,origin.lastChild);
+    }
     destination.disabled = true;
+    destination.color = "dark grey";
     //document.getElementById("header").width = window.innerWidth * 0.9;
     //document.getElementById("haeder").height = window.innerHeight * 0.9;
 
