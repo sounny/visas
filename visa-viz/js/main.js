@@ -102,7 +102,7 @@ function setWorldMap(){
 
 function changeOrigin(origin) {
     console.log("changing origin to:");
-    console.log(origin);
+    console.log(origin.value);
     return "completed";
 }
 
