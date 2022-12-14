@@ -25,8 +25,8 @@ function setWorldMap(){
 
     //////// HEADER //////////
     document.getElementById("header").innerHTML = "Visa Visualizer";
-    document.getElementById("header").width = window.innerWidth * 0.9;
-    document.getElementById("haeder").height = window.innerHeight * 0.9;
+    //document.getElementById("header").width = window.innerWidth * 0.9;
+    //document.getElementById("haeder").height = window.innerHeight * 0.9;
     
     /*var header = d3.select("body")
         .append("div")
