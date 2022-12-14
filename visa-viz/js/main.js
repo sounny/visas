@@ -136,10 +136,10 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
 //create color scale generator
 function makeWorldColorLevels(data){
     return ["#98FB98",
-        "#ffffb2",
-        "#fecc5c",
-        "#fd8d3c",
-        "#f03b20",
+        "#fef0d9",
+        "#fdcc8a",
+        "#fc8d59",
+        "#d7301f",
         "#5A5A5A"];
 };
 
