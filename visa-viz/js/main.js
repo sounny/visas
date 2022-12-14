@@ -35,7 +35,7 @@ function setWorldMap(){
             txt = document.createTextNode(countryList[i]);
         option.appendChild(txt);
         option.setAttribute("value",countryList[i]);
-        option.setAttribute("onchange", function(d){
+        option.on("change", function(d){
             //changeOrigin();
             origin.setAttribute("value", countryList[i]);
             console.log(countryList[i]);
