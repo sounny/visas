@@ -47,8 +47,7 @@ function setWorldMap(){
         console.log(origin.getAttribute("value"));
     });*/
     origin.setAttribute("onchange", function(d){
-        console.log("changed to:");
-        console.log(origin.getAttribute("value"));
+        return changeOrigin("new country");
     });
     destination.disabled = true;
     destination.color = "dark grey";
@@ -100,6 +99,12 @@ function setWorldMap(){
 
     
 };
+
+function changeOrigin(origin) {
+    console.log("changing origin to:");
+    console.log(origin);
+    return "completed";
+}
 
 function joinWorldData(countriesFeature, csvData){
     var matchesFound = 0;
