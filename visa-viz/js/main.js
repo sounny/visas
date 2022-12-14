@@ -36,7 +36,7 @@ function setWorldMap(){
     var map = d3.select("body")
         .append("svg")
         .attr("class", "map")
-        .attr("width", window.innerWidth)
+        .attr("width", window.innerWidth * 0.5)
         .attr("height", 420);
     //projection
     var projection = d3.geoEquirectangular()
