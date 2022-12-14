@@ -5,7 +5,7 @@ var csvData = "";
 ////global html elements
 header = document.getElementById("header");
 origin = document.getElementById("originInput");
-destination = desination.getElementById("destinationInput");
+destination = document.getElementById("destinationInput");
 //chartFrame dimensions
 var chartWidth = window.innerWidth * 0.425,
     chartHeight = 473,
@@ -27,10 +27,8 @@ window.onload = setWorldMap();
 //set up World map
 function setWorldMap(){
 
-    //////// HEADER //////////
-    
+    //////// HEADER and INPUTS changes //////////
     header.innerHTML = "Visa Visualizer";
-    
     destination.disabled = true;
     //document.getElementById("header").width = window.innerWidth * 0.9;
     //document.getElementById("haeder").height = window.innerHeight * 0.9;
@@ -225,7 +223,7 @@ function setMap(){
 //////// GRATICULE ////////
 function setGraticule(map, path) {
     var graticule = d3.geoGraticule()
-        .step([10, 10]); //place graticule lines every 10 degrees of longitude and latitude
+        .step([15, 15]); //place graticule lines every 15 degrees of longitude and latitude
     // graticule background
     var gratBackground = map.append("path")
         .datum(graticule.outline()) //bind graticule background
