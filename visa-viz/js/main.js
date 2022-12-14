@@ -2,6 +2,11 @@
 var countryList = ["Afghanistan","Albania","Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Republic of the Congo", "Democratic Republic of the Congo", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "North Korea", "South Korea", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "São Tomé and Príncipe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Singapore", "Sierra Leone", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"];
 var expressed = "Malaysia"; //initial attribute
 var csvData = "";
+//global vars for SetEnums
+var countriesFeature = "";
+var map = "";
+var projection = "";
+var colorScale = makeWorldColorLevels();
 ////global html elements
 header = document.getElementById("header");
 origin = document.getElementById("originSelect");//document.getElementById("originInput");
@@ -45,7 +50,7 @@ function setWorldMap(){
 
     //////// MAP, PROJECTION, PATH ////////
     //map frame - add new map svg
-    var map = d3.select("body")
+    map = d3.select("body")
         .append("svg")
         .attr("class", "map")
         .attr("width", window.innerWidth * 0.5)
@@ -55,7 +60,7 @@ function setWorldMap(){
         .scale((window.innerWidth * 0.5 - 3) / (2 * Math.PI))
         .translate([window.innerWidth * 0.5 / 2, 420 / 2]);
     //path
-    var path = d3.geoPath()
+    path = d3.geoPath()
         .projection(projection);
 
     //////// QUEUE BLOCKS ////////
@@ -71,30 +76,18 @@ function setWorldMap(){
         setGraticule(map, path);
 
         //pull data from topojson
-        var countriesFeature = topojson.feature(countries, countries.objects.countries).features;
+        countriesFeature = topojson.feature(countries, countries.objects.countries).features;
   
         //join csv data to JSON enum units
         countriesFeature = joinWorldData(countriesFeature, countryVisaCSV);
         console.log(countriesFeature);
-        //create color scale
-        var colorScale = makeWorldColorLevels(countryVisaCSV);
         //add enum units to the map
         setWorldEnumerationUnits(countriesFeature, map, path, colorScale);
-
-        var AFGname = countriesFeature[1].properties.ADMIN;
-        console.log(AFGname);
 
     };
 
     
 };
-
-function changeOrigin() {
-    //console.log("changing origin to:");
-    //origin = document.getElementById("originSelect");
-    console.log(origin.value);
-    //return "completed";
-}
 
 function joinWorldData(countriesFeature, csvData){
     var matchesFound = 0;
@@ -151,7 +144,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
             dehighlight(d.properties);
         })
         .on("click", function(d){
-            selectOrigin(d.properties, countriesFeature, map, path, colorScale);
+            changeOrigin(countriesFeature, map, path, colorScale, d.properties.ADMIN);
         })
         .on("mousemove", moveLabel)
         ;
@@ -161,7 +154,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
 };
 
 //create color scale generator
-function makeWorldColorLevels(data){
+function makeWorldColorLevels(){
     return ["#98FB98",
         "#fef0d9",
         "#fdcc8a",
@@ -612,16 +605,10 @@ function visaCode(visaNum) {
     };
 }
 
-function selectOrigin(props, countriesFeature, map, path, colorScale) {
-    console.log(props.ADMIN);
+function changeOrigin(countriesFeature, map, path, colorScale, originName) {
+    originName = originName || origin.value;
+    console.log("changing origin to" + originName);
 
-    expressed=props.ADMIN;
-    //setWorldMap();
+    expressed=originName;
     setWorldEnumerationUnits(countriesFeature, map, path, colorScale);
-    /*
-    //recolor enumeration units
-    var countries = d3.selectAll(".countries")
-    .style("fill", function(d){
-        return choropleth(d.properties, colorScale)
-    });*/
 }
