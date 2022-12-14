@@ -35,12 +35,6 @@ function setWorldMap(){
             txt = document.createTextNode(countryList[i]);
         option.appendChild(txt);
         option.setAttribute("value",countryList[i]);
-        /*option.on("change", function(d){
-            //changeOrigin();
-            origin.setAttribute("value", countryList[i]);
-            console.log(countryList[i]);
-            console.log(origin.getAttribute("value"));
-        })*/
         origin.insertBefore(option,origin.lastChild);
     }
 
@@ -97,6 +91,7 @@ function setWorldMap(){
 
 function changeOrigin(randomString) {
     console.log("changing origin to:");
+    origin = document.getElementById("originSelect");
     console.log(origin.getAttribute("value"));
     return "completed";
 }
