@@ -93,6 +93,7 @@ function changeOrigin(randomString) {
     console.log("changing origin to:");
     origin = document.getElementById("originSelect");
     console.log(origin.getAttribute("value"));
+    console.log(origin.value);
     return "completed";
 }
 
