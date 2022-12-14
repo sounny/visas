@@ -34,6 +34,13 @@ function setWorldMap(){
         var option = document.createElement("OPTION"),
             txt = document.createTextNode(countryList[i]);
         option.appendChild(txt);
+        option.setAttribute("value",countryList[i]);
+        option.setAttribute("onchange", function(d){
+            //changeOrigin();
+            origin.setAttribute("value", countryList[i]);
+            console.log(countryList[i]);
+            console.log(origin.getAttribute("value"));
+        })
         origin.insertBefore(option,origin.lastChild);
     }
     destination.disabled = true;
