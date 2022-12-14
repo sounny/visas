@@ -43,7 +43,11 @@ function setWorldMap(){
         })*/
         origin.insertBefore(option,origin.lastChild);
     }
-    origin.on("change", function(d){
+    /*origin.on("change", function(d){
+        console.log(origin.getAttribute("value"));
+    });*/
+    origin.setAttribute("onchange", function(d){
+        console.log("changed to:");
         console.log(origin.getAttribute("value"));
     });
     destination.disabled = true;
