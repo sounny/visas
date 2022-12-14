@@ -26,6 +26,9 @@ function setWorldMap(){
     //////// HEADER //////////
     header = document.getElementById("header");
     header.innerHTML = "Visa Visualizer";
+    origin = document.getElementById("originInput");
+    destination = desination.getElementById("destinationInput");
+    destination.disabled = true;
     //document.getElementById("header").width = window.innerWidth * 0.9;
     //document.getElementById("haeder").height = window.innerHeight * 0.9;
 
