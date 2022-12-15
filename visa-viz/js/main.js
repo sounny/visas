@@ -127,7 +127,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         .attr("d", path)
         .style("fill", function(d){
             if(!expressed || expressed=="Country of Citizenship")
-                return "D3D3D3";
+                return "#D3D3D3";
             else
                 return colorScale[d.properties[expressed]];
         })
@@ -536,16 +536,15 @@ function dehighlight(props){
 };
 
 function setLabel(props){
+
     //label content
     visaNum = props[expressed];
     var labelAttribute = "Citizen from: <b>"+expressed+"</b>"
         + "<br>Visiting: <b>"+props.ADMIN+"</b>"
         + "<br><b><div id='visatext"+visaNum+"'>"+visaCode(visaNum)+"</div>"+"</b>";
-    if(visaNum==0) {
+    if(visaNum<1) {
         labelAttribute = "<h1>"+props.ADMIN+"</h1>";
     }
-    //expressed + " citizen visiting " + props.ADMIN + ": " + "<h1>"+visaCode(props[expressed])+"</h1>"
-    //"<h1>" + props[expressed] + "%</h1>of <b>" + props.ADMIN + "</b> production";
 
     //create info label div
     var infolabel = d3.select("body")
@@ -554,10 +553,6 @@ function setLabel(props){
         .attr("id", props.name + "_label")
         .html(labelAttribute);
 
-        /*
-    var stateName = infolabel.append("div")
-        .attr("class", "labelname")
-        .html(props.name);*/
 };
 
 function moveLabel(){
