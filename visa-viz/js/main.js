@@ -45,8 +45,6 @@ function setWorldMap(){
 
     destination.disabled = true;
     destination.color = "dark grey";
-    //document.getElementById("header").width = window.innerWidth * 0.9;
-    //document.getElementById("haeder").height = window.innerHeight * 0.9;
 
     //////// MAP, PROJECTION, PATH ////////
     //map frame - add new map svg
@@ -128,11 +126,10 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         })
         .attr("d", path)
         .style("fill", function(d){
-            if(!expressed)
+            if(!expressed || expressed=="Country of Citizenship")
                 return "D3D3D3";
             else
-                return colorScale[d.properties[expressed]]
-            ;
+                return colorScale[d.properties[expressed]];
         })
         .style("stroke", "#000")
         .style("stroke-width", "1px")
