@@ -52,9 +52,6 @@ function setWorldMap(){
         destination.insertBefore(option,destination.lastChild);
     }
 
-    destination.disabled = true;
-    destination.color = "dark grey";
-
     //////// MAP, PROJECTION, PATH ////////
     //map frame - add new map svg
     map = d3.select("body")
