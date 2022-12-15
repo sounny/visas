@@ -610,6 +610,7 @@ function changeOrigin(countriesFeature, map, path, colorScale, originName) {
 
     expressed=originName;
     setWorldEnumerationUnits(countriesFeature, map, path, colorScale);
+    destination.value="Armenia";
     if(originName && originName!="Country of Citizenship") {
         destination.disabled=false;
     }
