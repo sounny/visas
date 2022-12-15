@@ -10,9 +10,8 @@
 
 	<body>
 		<h1 id="header">Title</h1>
-		<input type="text" id="originInput" placeholder="Country of Citizenship" size="35">
-		<input type="text" id="destinationInput" placeholder="Country of Destination" size="35">
-		<select id="originSelect" onchange="changeOrigin(countriesFeature, map, path, colorScale)"><option value="">Country of Citizenship</option></select>
+		<select id="originSelect" onchange="changeOrigin(countriesFeature, map, path, colorScale)"><option value=""> -- Country of Citizenship -- </option></select>
+		<select id="destinationSelect" onchange="changeDestination()"><option value=""> -- Destination Country -- </option></select>
 		<!--libraries-->
 		<script type="text/javascript" src="lib/d3.js"></script>
 		<script type="text/javascript" src="lib/d3-selection-multi.min.js"></script>

@@ -1,6 +1,6 @@
 //global variables
 var countryList = ["Afghanistan","Albania","Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Republic of the Congo", "Democratic Republic of the Congo", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "North Korea", "South Korea", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "São Tomé and Príncipe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Singapore", "Sierra Leone", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"];
-var expressed = "Country of Citizenship"; //initial attribute
+var expressed = " -- Country of Citizenship -- "; //initial attribute
 var csvData = "";
 //global vars for SetEnums
 var countriesFeature = "";
@@ -9,8 +9,8 @@ var projection = "";
 var colorScale = makeWorldColorLevels();
 ////global html elements
 header = document.getElementById("header");
-origin = document.getElementById("originSelect");//document.getElementById("originInput");
-destination = document.getElementById("destinationInput");
+origin = document.getElementById("originSelect");
+destination = document.getElementById("destinationSelect");
 
 //chartFrame dimensions
 var chartWidth = window.innerWidth * 0.425,
@@ -35,6 +35,7 @@ function setWorldMap(){
 
     //////// HEADER and INPUTS changes //////////
     header.innerHTML = "Visa Visualizer";
+    //Populate Origin Country Dropdown
     for(var i = 0; i < countryList.length; i++) {
         var option = document.createElement("OPTION"),
             txt = document.createTextNode(countryList[i]);
@@ -42,6 +43,7 @@ function setWorldMap(){
         option.setAttribute("value",countryList[i]);
         origin.insertBefore(option,origin.lastChild);
     }
+    //
 
     destination.disabled = true;
     destination.color = "dark grey";
@@ -605,3 +607,13 @@ function changeOrigin(countriesFeature, map, path, colorScale, originName) {
     expressed=originName;
     setWorldEnumerationUnits(countriesFeature, map, path, colorScale);
 }
+
+function changeDestination(){
+    var labelAttribute = "Citizen from: <b>"+origin.value+"</b>"
+        + "<br>Visiting: <b>"+destination.value+"</b>"
+        + "<br><b><div id='visatext"+visaNum+"'>"+visaCode(visaNum)+"</div>"+"</b>";
+}
+
+
+/// WIPE destination when changing origin
+/// ENABLE destinationSelect when changing origin, if NOT to default (then set it to disabled) 
