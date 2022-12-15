@@ -613,6 +613,8 @@ function changeOrigin(countriesFeature, map, path, colorScale, originName) {
     if(originName && originName!="Country of Citizenship") {
         destination.disabled=false;
     }
+    else
+        destination.disabled=true;
 
 }
 
