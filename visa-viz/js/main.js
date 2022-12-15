@@ -142,7 +142,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         })
         .on("click", function(d){
             origin.value = d.properties.ADMIN;
-            //changeOrigin(countriesFeature, map, path, colorScale, d.properties.ADMIN);
+            changeOrigin(countriesFeature, map, path, colorScale, d.properties.ADMIN);
         })
         .on("mousemove", moveLabel)
         ;
