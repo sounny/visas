@@ -142,11 +142,13 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         .style("stroke-width", "1px")
         .style("stroke-linecap", "round")
         .on("mouseover", function(d){
-            if(isOriginSelected()) destination.value = d.properties.ADMIN;
+            if(isOriginSelected()) 
+                destination.value = d.properties.ADMIN;
             highlight(d.properties);
         })
         .on("mouseout", function(d){
-            if(!isDestinationSelected) destination.value = " -- Destination Country -- ";
+            if(!isDestinationSelected()) 
+                destination.value = " -- Destination Country -- ";
             dehighlight(d.properties);
         })
         .on("click", function(d){
