@@ -611,12 +611,7 @@ function changeOrigin(countriesFeature, map, path, colorScale, originName) {
     expressed=originName;
     setWorldEnumerationUnits(countriesFeature, map, path, colorScale);
     if(originName && originName!="Country of Citizenship") {
-        destination.setAttribute("disabled", false);
-        destination.setAttribute("disabled", "false");
         destination.disabled=false;
-        destination.disabled="false";
-        destination.attr("disabled", false);
-        destination.attr("disabled", "false");
     }
 
 }
