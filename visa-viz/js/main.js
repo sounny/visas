@@ -11,6 +11,7 @@ var colorScale = makeWorldColorLevels();
 header = document.getElementById("header");
 origin = document.getElementById("originSelect");
 destination = document.getElementById("destinationSelect");
+destinationSelectedBoolean = false;
 
 //chartFrame dimensions
 var chartWidth = window.innerWidth * 0.425,
@@ -132,7 +133,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         })
         .attr("d", path)
         .style("fill", function(d){
-            if(!expressed || expressed=="Country of Citizenship")
+            if(!isOriginSelected())
                 return "#D3D3D3";
             else
                 return colorScale[d.properties[expressed]];
@@ -141,11 +142,11 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         .style("stroke-width", "1px")
         .style("stroke-linecap", "round")
         .on("mouseover", function(d){
-            destination.value = d.properties.ADMIN;
+            if(isOriginSelected()) destination.value = d.properties.ADMIN;
             highlight(d.properties);
         })
         .on("mouseout", function(d){
-            destination.value = " -- Destination Country -- ";
+            if(!isDestinationSelected) destination.value = " -- Destination Country -- ";
             dehighlight(d.properties);
         })
         .on("click", function(d){
@@ -604,7 +605,7 @@ function visaCode(visaNum) {
         default:
             return "missing data";
     };
-}
+};
 
 function changeOrigin(countriesFeature, map, path, colorScale, originName) {
     originName = originName || origin.value;
@@ -613,19 +614,28 @@ function changeOrigin(countriesFeature, map, path, colorScale, originName) {
     expressed=originName;
     setWorldEnumerationUnits(countriesFeature, map, path, colorScale);
     destination.value=" -- Destination Country -- ";
-    if(originName && originName!="Country of Citizenship") {
+    destinationSelectedBoolean = false;
+    if(isOriginSelected()) {
         destination.disabled=false;
     }
     else
         destination.disabled=true;
 
-}
+};
 
 function changeDestination(){
+    destinationSelectedBoolean = true;
     /*var labelAttribute = "Citizen from: <b>"+origin.value+"</b>"
         + "<br>Visiting: <b>"+destination.value+"</b>"
         + "<br><b><div id='visatext"+visaNum+"'>"+visaCode(visaNum)+"</div>"+"</b>";*/
     console.log("destination at" + destination.value);
+};
+
+function isOriginSelected(){
+    return (originName && originName!="Country of Citizenship");
+};
+function isDestinationSelected(){
+    return destinationSelectedBoolean;
 }
 
 
