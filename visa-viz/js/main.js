@@ -632,7 +632,7 @@ function changeDestination(){
 };
 
 function isOriginSelected(){
-    return (originName && originName!="Country of Citizenship");
+    return (origin.value && origin.value!="Country of Citizenship");
 };
 function isDestinationSelected(){
     return destinationSelectedBoolean;
