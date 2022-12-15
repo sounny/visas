@@ -606,16 +606,19 @@ function visaCode(visaNum) {
 
 function changeOrigin(countriesFeature, map, path, colorScale, originName) {
     originName = originName || origin.value;
-    console.log("changing origin to" + originName);
+    console.log("changing origin to " + originName);
 
     expressed=originName;
     setWorldEnumerationUnits(countriesFeature, map, path, colorScale);
+    if(originName && originName!="Country of Citizenship")
+        destination.setAttribute("disabled", false);
 }
 
 function changeDestination(){
-    var labelAttribute = "Citizen from: <b>"+origin.value+"</b>"
+    /*var labelAttribute = "Citizen from: <b>"+origin.value+"</b>"
         + "<br>Visiting: <b>"+destination.value+"</b>"
-        + "<br><b><div id='visatext"+visaNum+"'>"+visaCode(visaNum)+"</div>"+"</b>";
+        + "<br><b><div id='visatext"+visaNum+"'>"+visaCode(visaNum)+"</div>"+"</b>";*/
+    console.log("destination at" + destination.value);
 }
 
 

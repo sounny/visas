@@ -70,7 +70,7 @@
 .countries {
 	fill: #FFF;
 	stroke: #CCC;
-	stroke-width: 1px;
+	stroke-width: 0.5px;
 }
 
 .gratBackground {
