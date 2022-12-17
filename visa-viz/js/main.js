@@ -142,7 +142,9 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         .style("stroke-width", "1px")
         .style("stroke-linecap", "round")
         .on("mouseover", function(d){
-            if(isOriginSelected()) 
+            if(origin.value == d.properties.ADMIN)
+                destination.value = " -- Destination Country -- ";
+            else if(isOriginSelected()) 
                 destination.value = d.properties.ADMIN;
             highlight(d.properties);
         })
