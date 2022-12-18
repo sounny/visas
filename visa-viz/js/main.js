@@ -567,7 +567,7 @@ function setPieChart() {
         //console.log(country.properties.ADMIN);
     };*/
     for(var country of countriesFeature) {
-        console.log(country);
+        console.log(country.properties.expressed);
     }
     var typesVisa = "array";
     typesVisa["Visa not required"] = 103;
