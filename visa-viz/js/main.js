@@ -557,8 +557,13 @@ function setPieChart() {
     // Step 1        
     var allCountries = document.getElementsByClassName("classCountry");
     for (const country of allCountries) {
-        if(typeof country.properties.ADMIN !== 'undefined')
-            console.log(country.properties.ADMIN);
+        console.log(country);
+        console.log(country.data());
+        console.log(country.data().properties);
+        console.log(country.data().properties.ADMIN);
+        console.log("------------------");
+        //if(typeof country.properties.ADMIN !== 'undefined')
+        //console.log(country.properties.ADMIN);
     };
     var typesVisa = "array";
     typesVisa["Visa not required"] = 103;
