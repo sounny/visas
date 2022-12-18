@@ -541,7 +541,7 @@ function changeDestination(){
     window.alert("Citizen from: "+origin.value);
     window.alert("Visiting: "+destination.value);
     result = document.getElementsByClassName(destination.value);
-    console.log(results);
+    console.log(result);
 };
 
 function isOriginSelected(){
