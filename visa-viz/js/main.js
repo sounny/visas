@@ -131,12 +131,9 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         .data(countriesFeature)
         .enter()
         .append("path")
-        /*.attr("class", function(d){
+        .attr("class", function(d){
             return d.properties.ADMIN;
-        })*/
-        .attr("class", "classCountry")
-        .attr("tagName", "tagCountry")
-        .attr("id", "idCountry")
+        })
         .attr("d", path)
         .style("fill", function(d){
             if(!isOriginSelected())
@@ -541,7 +538,10 @@ function changeDestination(){
         + "<br>Visiting: <b>"+destination.value+"</b>"
         + "<br><b><div id='visatext"+visaNum+"'>"+visaCode(visaNum)+"</div>"+"</b>";*/
     console.log(destination.value);
-    window.alert("Citizen from: "+origin.value+"<br>Visiting: "+destination.value+"<br>");
+    window.alert("Citizen from: "+origin.value);
+    window.alert("Visiting: "+destination.value);
+    result = document.getElementsByClassName(destination.value);
+    console.log(results);
 };
 
 function isOriginSelected(){
@@ -648,6 +648,7 @@ function setPieChart() {
         .attr("transform", function(d) { 
                     return "translate(" + label.centroid(d) + ")"; 
             })
+        .attr("justify-content", "center")
         .text(function(d) { return d.data.name; })
         .style("font-family", "arial")
         .style("font-size", 15);
