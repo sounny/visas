@@ -165,7 +165,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
             changeOrigin(countriesFeature, map, path, colorScale, clickedCountry);
             } else if(isOriginSelected()) {
                 if(origin.value==clickedCountry) {
-                    origin.value = " -- Country of Citizenship -- "
+                    origin.value = "";
                 } else {
                     destination.value = clickedCountry;
                     changeDestination();
@@ -558,11 +558,11 @@ function changeDestination(){
     }
 
     destinationSelectedBoolean = true;
-    window.alert("Citizen from: \t"+origin.value+"\nVisiting: \t\t"+destination.value+"\nRequirements: \t"+visaCode(getRequirements()));
+    window.alert("Citizen from: "+origin.value+"\nVisiting: "+destination.value+"\nRequirements: "+visaCode(getRequirements()));
 };
 
 function isOriginSelected(){
-    return (origin.value && origin.value!="Country of Citizenship");
+    return (origin.value && origin.value!=" -- Country of Citizenship -- ");
 };
 function isDestinationSelected(){
     return destinationSelectedBoolean;
