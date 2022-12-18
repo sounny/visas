@@ -544,7 +544,7 @@ function setPieChart() {
         width = svg.getAttribute("width"),
         height = svg.getAttribute("height"),
         radius = Math.min(width, height) / 2,
-        g = svg.append("g").setAttribute("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+        g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
     var color = d3.scaleOrdinal(['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c']);
 
