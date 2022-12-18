@@ -5,6 +5,7 @@ var csvData = "";
 //global vars for SetEnums
 var countriesFeature = "";
 var map = "";
+var pieChart = "";
 var projection = "";
 var colorScale = makeWorldColorLevels();
 ////global html elements
@@ -69,6 +70,11 @@ function setWorldMap(){
     //path
     path = d3.geoPath()
         .projection(projection);
+
+    pieChart =  d3.select("body")
+        .append("svg")
+        .attr("width", 420)
+        .attr("height", 420)
 
     //////// QUEUE BLOCKS ////////
     var promises = [];
@@ -560,14 +566,14 @@ function isDestinationSelected(){
 
 function setPieChart() {
     // Step 3
-    var svg =  d3.select("body")
+/*    var svg =  d3.select("body")
                  .append("svg")
                  .attr("width", 420)
-                 .attr("height", 420),
+                 .attr("height", 420),*/
 
         //d3.select("svg"),                 
-    width = svg.attr("width"),
-    height = svg.attr("height"),
+    width = pieChart.attr("width"),
+    height = pieChart.attr("height"),
     radius = 200;
 
     // Step 1 
@@ -605,7 +611,7 @@ function setPieChart() {
     };
     console.log(data);
 
-    var g = svg.append("g")
+    var g = pieChart.append("g")
             .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
     // Step 4
