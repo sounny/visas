@@ -560,7 +560,12 @@ function isDestinationSelected(){
 
 function setPieChart() {
     // Step 3
-    var svg =  d3.select("body").append("svg"),    //d3.select("svg"),                 
+    var svg =  d3.select("body")
+                 .append("svg")
+                 .attr("width", 420)
+                 .attr("height", 420),
+
+        //d3.select("svg"),                 
     width = svg.attr("width"),
     height = svg.attr("height"),
     radius = 200;
@@ -599,12 +604,7 @@ function setPieChart() {
             data.push({name: typesVisaNames[i], share: typesVisa[i]});
     };
     console.log(data);
-    /*var data = [{name: "Alex", share: typesVisa[1]}, 
-                    {name: "Shelly", share: typesVisa[2]},
-                    {name: "Clark", share: typesVisa[3]},
-                    {name: "Matt", share: typesVisa[4]},
-                    {name: "Jolene", share: typesVisa[5]}];
-*/
+
     var g = svg.append("g")
             .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
