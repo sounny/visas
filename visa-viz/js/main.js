@@ -558,7 +558,7 @@ function changeDestination(){
     }
 
     destinationSelectedBoolean = true;
-    window.alert("Citizen from: "+origin.value+"\nVisiting: "+destination.value+"\nRequirements: "+visaCode(getRequirements()));
+    window.alert("Citizen from: \t"+origin.value+"\nVisiting: \t\t"+destination.value+"\nRequirements: \t"+visaCode(getRequirements()));
 };
 
 function isOriginSelected(){
