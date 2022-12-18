@@ -184,63 +184,6 @@ function makeWorldColorLevels(){
 
 
 
-
-
-
-
-//set up choropleth map
-function setMap(){
-
-    //////// MAP, PROJECTION, PATH ////////
-    //add new map svg
-    var map = d3.select("body")
-        .append("svg")
-        .attr("class", "map")
-        .attr("width", window.innerWidth * 0.5)
-        .attr("height", 420);
-    //create AlbersUSA projection centered on USA
-    var projection = d3.geoMercator()//d3.geoAlbersUsa()
-        //.scale(900)
-        //.translate([387.5,215])
-        .scale((window.innerWidth * 0.5 - 3) / (2 * Math.PI))
-        .translate([window.innerWidth * 0.5 / 2, 420 / 2]);
-    var path = d3.geoPath()
-        .projection(projection);
- 
-    
-
-    //////// QUEUE BLOCKS ////////
-    var promises = [];
-    promises.push(d3.csv("data/countryVisaTransposedCSV.csv"));
-    promises.push(d3.json("data/countriesTOPO.json"));
-    promises.push(d3.csv("data/cropDataCSV.csv")); //load attributes from csv
-    promises.push(d3.json("data/UsaStatesTopoJson5.topojson")); //load choropleth spatial data
-    Promise.all(promises).then(callback);
-
-    // begin map/chart setup in callback
-    function callback(data){
-        countryVisaCSV = data[0];
-        countries = data[1];
-        csvData = data[2];
-        usaStates = data[3];
-        setGraticule(map, path);
-
-        //pull data from topojson
-        var statesFeature = topojson.feature(usaStates, usaStates.objects.states).features;
-        console.log(statesFeature);
-        //join csv data to JSON enum units
-        statesFeature = joinData(statesFeature, csvData);
-        //create color scale
-        var colorScale = makeColorScale(csvData);
-        //add enum units to the map
-        setEnumerationUnits(statesFeature, map, path, colorScale);
-        //built chart
-        setChart(csvData, colorScale);
-        //create dropdown menu
-        createDropdown();
-    };
-};
-
 //////// GRATICULE ////////
 function setGraticule(map, path) {
     var graticule = d3.geoGraticule()
@@ -259,58 +202,6 @@ function setGraticule(map, path) {
         .attr("d", path); //project graticule lines
 };
 
-function joinData(statesFeature, csvData){
-    //loop thru csv, assign attributes to json states
-    for (var i=0; i<csvData.length; i++){
-        var csvState = csvData[i]; //the current state
-        var csvKey = csvState.state; //the CSV state name //was the CSV primary key
-
-        //loop thru json states to find matching csv state
-        for (var a=0; a<statesFeature.length; a++){
-            var geojsonProps = statesFeature[a].properties; //the current state geojson properties
-            var geojsonKey = geojsonProps.name; //the geojson key-> the stateFeature Name
-
-            //when keys match, add csv data to json object's properties
-            if (geojsonKey == csvKey){
-                //assign all attributes and values
-                attrArray.forEach(function(attr){
-                    var val = parseFloat(csvState[attr]); //get csv attribute value
-                    geojsonProps[attr] = val; //assign attribute and value to geojson properties
-                });
-            };
-        };
-    };
-
-    return statesFeature;
-};
-
-function setEnumerationUnits(statesFeature, map, path, colorScale) {
-    //add US States to map
-    var states = map.selectAll(".states")
-        .data(statesFeature)
-        .enter()
-        .append("path")
-        .attr("class", function(d){
-            return "state " + d.properties.name;
-        })
-        .attr("d", path)
-        .style("fill", function(d){
-            return colorScale(d.properties[expressed]);
-        })
-        .style("stroke", "#000")
-        .style("stroke-width", "1px")
-        .style("stroke-linecap", "round")
-        .on("mouseover", function(d){
-            highlight(d.properties);
-        })
-        .on("mouseout", function(d){
-            dehighlight(d.properties);
-        })
-        .on("mousemove", moveLabel);
-    
-    var desc = states.append("desc")
-        .text('{"stroke": "#000", "stroke-width": "1px"}');
-};
 
 //create color scale generator
 function makeColorScale(data){
@@ -556,7 +447,7 @@ function setLabel(props){
     var labelAttribute = "Citizen from: <b>"+expressed+"</b>"
         + "<br>Visiting: <b>"+props.ADMIN+"</b>"
         + "<br><b><div id='visatext"+visaNum+"'>"+visaCode(visaNum)+"</div>"+"</b>";
-    if(visaNum<1) {
+    if(!expressed) {
         labelAttribute = "<h1>"+props.ADMIN+"</h1>";
     }
 
