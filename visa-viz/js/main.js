@@ -543,7 +543,7 @@ function setPieChart() {
     var svg = document.getElementById("piechart"),
         width = svg.getAttribute("width"),
         height = svg.getAttribute("height"),
-        radius = Math.min(width, height) / 2,
+        radius = Math.min(width, height) / 2;
     
     var g = svg.append("g")
                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
@@ -610,8 +610,8 @@ function setPieChartAgain() {
                 .innerRadius(0);
 
     arc.append("path")
-    .attr("d", path)
-    .attr("fill", function(d) { return ordScale(d.data.name); });
+        .attr("d", path)
+        .attr("fill", function(d) { return ordScale(d.data.name); });
 
     // Step 7
     var label = d3.arc()
@@ -619,10 +619,10 @@ function setPieChartAgain() {
                 .innerRadius(0);
         
     arc.append("text")
-    .attr("transform", function(d) { 
-                return "translate(" + label.centroid(d) + ")"; 
-        })
-    .text(function(d) { return d.data.name; })
-    .style("font-family", "arial")
-    .style("font-size", 15);
+        .attr("transform", function(d) { 
+                    return "translate(" + label.centroid(d) + ")"; 
+            })
+        .text(function(d) { return d.data.name; })
+        .style("font-family", "arial")
+        .style("font-size", 15);
 };
