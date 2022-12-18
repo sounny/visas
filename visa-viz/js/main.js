@@ -128,9 +128,10 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         .data(countriesFeature)
         .enter()
         .append("path")
-        .attr("class", function(d){
+        /*.attr("class", function(d){
             return d.properties.ADMIN;
-        })
+        })*/
+        .attr("class", "classCountry")
         .attr("tagName", "tagCountry")
         .attr("id", "idCountry")
         .attr("d", path)
@@ -554,31 +555,24 @@ function setPieChart() {
     radius = 200;
 
     // Step 1        
-    var allCountries = document.getElementsByTagName("path");
+    var allCountries = document.getElementsByClassName("classCountry");
     for (const country of allCountries) {
         if(typeof country.properties.ADMIN !== 'undefined')
             console.log(country.properties.ADMIN);
     };
-    /*
-    allCountries = document.getElementsByTagName("tagCountry");
-    for (const country of allCountries) {
-        console.log(country.ADMIN);
-    };
-    allCountries = document.getElementsById("idCountry");
-    for (const country of allCountries) {
-        console.log(country.ADMIN);
-    };
-    allCountries = document.selectAll("path");
-    for (const country of allCountries) {
-        console.log(country.ADMIN);
-    };*/
+    var typesVisa = "array";
+    typesVisa["Visa not required"] = 103;
+    typesVisa["eVisa"] = 30;
+    typesVisa["Visa on Arrival"] = 35;
+    typesVisa["Visa required"] = 25;
+    typesVisa["Restricted"] = 0;
+    
 
-
-    var data = [{name: "Alex", share: 20.70}, 
-                {name: "Shelly", share: 30.92},
-                {name: "Clark", share: 15.42},
-                {name: "Matt", share: 13.65},
-                {name: "Jolene", share: 19.31}];
+    var data = [{name: "Visa not required", share: typesVisa["Visa not required"]}, 
+                {name: "eVisa", share: typesVisa["eVisa"]},
+                {name: "Visa on Arrival", share: typesVisa["Visa on Arrival"]},
+                {name: "Visa required", share: typesVisa["Visa required"]},
+                {name: "Restricted", share: typesVisa["Restricted"]}];
 
     var g = svg.append("g")
             .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
