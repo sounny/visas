@@ -89,8 +89,6 @@ function setWorldMap(){
         //add enum units to the map
         setWorldEnumerationUnits(countriesFeature, map, path, colorScale);
 
-        setPieChartAgain();
-
     };
 
     
@@ -517,6 +515,8 @@ function changeOrigin(countriesFeature, map, path, colorScale, originName) {
     }
     else
         destination.disabled=true;
+
+    setPieChartAgain();
 
 };
 
