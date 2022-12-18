@@ -495,6 +495,12 @@ function moveLabel(){
         .style("top", y + "px");
 };
 
+function getRequirements() {
+    for (var a=0; a<countriesFeature.length; a++){
+        if(countriesFeature[a].properties.ADMIN == destination.value)
+            return countriesFeature[a].properties[origin.value];
+    };
+}
 function visaCode(visaNum) {
     switch(visaNum) {
         case 0:
@@ -533,15 +539,22 @@ function changeOrigin(countriesFeature, map, path, colorScale, originName) {
 };
 
 function changeDestination(){
+
+    if(origin.value == destination.value) {
+        destination.value = " -- Destination Country -- ";
+        return;
+    }
+
     destinationSelectedBoolean = true;
     /*var labelAttribute = "Citizen from: <b>"+origin.value+"</b>"
         + "<br>Visiting: <b>"+destination.value+"</b>"
         + "<br><b><div id='visatext"+visaNum+"'>"+visaCode(visaNum)+"</div>"+"</b>";*/
     console.log(destination.value);
-    window.alert("Citizen from: "+origin.value);
-    window.alert("Visiting: "+destination.value);
-    result = document.getElementsByClassName(destination.value);
-    console.log(result);
+    window.alert("Citizen from: "+origin.value+"\nVisiting: "+destination.value+"\n");
+    console.log(getRequirements());/*result = document.getElementsByClassName(destination.value);
+    if(result.length != 1) {
+        console.log(result);
+    };*/
 };
 
 function isOriginSelected(){
