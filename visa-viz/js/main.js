@@ -567,7 +567,7 @@ function setPieChart() {
         //console.log(country.properties.ADMIN);
     };*/
     for(var country of countriesFeature) {
-        console.log(country.properties.expressed);
+        console.log(country.properties[expressed]);
     }
     var typesVisa = "array";
     typesVisa["Visa not required"] = 103;
@@ -577,11 +577,11 @@ function setPieChart() {
     typesVisa["Restricted"] = 0;
     
 
-    var data = [{name: "Visa not required", share: typesVisa["Visa not required"]}, 
-                {name: "eVisa", share: typesVisa["eVisa"]},
-                {name: "Visa on Arrival", share: typesVisa["Visa on Arrival"]},
-                {name: "Visa required", share: typesVisa["Visa required"]},
-                {name: "Restricted", share: typesVisa["Restricted"]}];
+    var data = [{name: "Alex", share: 20.70}, 
+                    {name: "Shelly", share: 30.92},
+                    {name: "Clark", share: 15.42},
+                    {name: "Matt", share: 13.65},
+                    {name: "Jolene", share: 19.31}];
 
     var g = svg.append("g")
             .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
