@@ -592,9 +592,9 @@ function setPieChart() {
         };
     }
 
-    var typesVisaNames = ["Visa not required", "eVisa", "Visa on Arrival", "Visa required", "Restricted"];
+    var typesVisaNames = ["", "Visa not required", "eVisa", "Visa on Arrival", "Visa required", "Restricted"];
     var data = [];
-    for(let i = 0; i <= 5; i++) {
+    for(let i = 1; i <= 5; i++) {
         if(typesVisa[i]>0) 
             data.push({name: typesVisaNames[i], share: typesVisa[i]});
     };
