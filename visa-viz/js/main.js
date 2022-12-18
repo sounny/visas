@@ -561,10 +561,11 @@ function isDestinationSelected(){
 
 function setPieChart() {
     
-    pieChart.remove();
+    d3.select(".pieChart").remove();
     
     pieChart =  d3.select("body")
         .append("svg")
+        .attr("class", "pieChart")
         .attr("width", 420)
         .attr("height", 420);
 
