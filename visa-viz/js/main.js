@@ -156,13 +156,16 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
                 destination.value = " -- Destination Country -- ";
             dehighlight(d.properties);
         })
-        .on("click", function(d){
+        .on("dblclick", function(d){
             origin.value = d.properties.ADMIN;
             changeOrigin(countriesFeature, map, path, colorScale, d.properties.ADMIN);
         })
-        .on("dblclick", function(d){
-            destination.value = d.properties.ADMIN;
-            if(isOriginSelected()) changeDestination();
+        .on("click", function(d){
+            
+            if(isOriginSelected()) {
+                destination.value = d.properties.ADMIN;
+                changeDestination();
+            }
         })
         .on("mousemove", moveLabel)
         ;
