@@ -560,7 +560,7 @@ function isDestinationSelected(){
 
 function setPieChart() {
     // Step 3
-    var svg = d3.select("svg"),
+    var svg =  d3.select("body").append("svg"),    //d3.select("svg"),                 
     width = svg.attr("width"),
     height = svg.attr("height"),
     radius = 200;
