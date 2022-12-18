@@ -131,6 +131,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         .attr("class", function(d){
             return d.properties.ADMIN;
         })
+        .attr("tagName", "country")
         .attr("d", path)
         .style("fill", function(d){
             if(!isOriginSelected())
@@ -516,7 +517,7 @@ function changeOrigin(countriesFeature, map, path, colorScale, originName) {
     else
         destination.disabled=true;
 
-    setPieChartAgain();
+    setPieChart();
 
 };
 
@@ -537,43 +538,14 @@ function isDestinationSelected(){
 
 
 
+
+
+
+
+
+
+
 function setPieChart() {
-    var data = [2, 4, 8, 10];
-
-    var svg = document.getElementById("piechart"),
-        width = svg.getAttribute("width"),
-        height = svg.getAttribute("height"),
-        radius = Math.min(width, height) / 2;
-    
-    var g = svg.append("g")
-               .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-    var color = d3.scaleOrdinal(['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c']);
-
-    // Generate the pie
-    var pie = d3.pie();
-
-    // Generate the arcs
-    var arc = d3.arc()
-                .innerRadius(0)
-                .outerRadius(radius);
-
-    //Generate groups
-    var arcs = g.selectAll("arc")
-                .data(pie(data))
-                .enter()
-                .append("g")
-                .attr("class", "arc")
-
-    //Draw arc paths
-    arcs.append("path")
-        .attr("fill", function(d, i) {
-            return color(i);
-        })
-        .attr("d", arc);
-};
-
-function setPieChartAgain() {
     // Step 3
     var svg = d3.select("svg"),
     width = svg.attr("width"),
@@ -581,6 +553,10 @@ function setPieChartAgain() {
     radius = 200;
 
     // Step 1        
+    const allCountries = document.selectAll(".countries");//document.getElementsByTagName("");
+    for (const country of allCountries) {
+        console.log(country.ADMIN);
+    };
     var data = [{name: "Alex", share: 20.70}, 
                 {name: "Shelly", share: 30.92},
                 {name: "Clark", share: 15.42},
