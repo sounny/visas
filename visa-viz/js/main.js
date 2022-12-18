@@ -36,6 +36,8 @@ function setWorldMap(){
 
     //////// HEADER and INPUTS changes //////////
     header.innerHTML = "Visa Visualizer";
+    header.setAttribute("width", window.innerWidth);
+    header.setAttribute("position", "absolute");
     //Populate Origin Country Dropdown
     for(var i = 0; i < countryList.length; i++) {
         var option = document.createElement("OPTION"),
@@ -574,6 +576,9 @@ function setPieChart() {
             case 4:
                 typesVisa[4]++;
                 break;
+            case 5:
+                typesVisa[5]++;
+                break;
         };
     }
     console.log(typesVisa);
@@ -584,11 +589,11 @@ function setPieChart() {
     typesVisa["Restricted"] = 0;
     
 
-    var data = [{name: "Alex", share: 20.70}, 
-                    {name: "Shelly", share: 30.92},
-                    {name: "Clark", share: 15.42},
-                    {name: "Matt", share: 13.65},
-                    {name: "Jolene", share: 19.31}];
+    var data = [{name: "Alex", share: typesVisa[1]}, 
+                    {name: "Shelly", share: typesVisa[2]},
+                    {name: "Clark", share: typesVisa[3]},
+                    {name: "Matt", share: typesVisa[4]},
+                    {name: "Jolene", share: typesVisa[5]}];
 
     var g = svg.append("g")
             .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
