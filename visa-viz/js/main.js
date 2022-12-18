@@ -553,7 +553,7 @@ function setPieChart() {
     radius = 200;
 
     // Step 1        
-    const allCountries = document.selectAll(".countries");//document.getElementsByTagName("");
+    const allCountries = map.selectAll(".countries");//document.getElementsByTagName("");
     for (const country of allCountries) {
         console.log(country.ADMIN);
     };
