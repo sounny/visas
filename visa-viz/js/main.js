@@ -556,7 +556,7 @@ function setPieChart() {
     // Step 1        
     var allCountries = document.getElementsByTagName("path");
     for (const country of allCountries) {
-        if(country.properties.ADMIN)
+        if(typeof country.properties.ADMIN !== 'undefined')
             console.log(country.properties.ADMIN);
     };
     /*
