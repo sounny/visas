@@ -71,11 +71,6 @@ function setWorldMap(){
     path = d3.geoPath()
         .projection(projection);
 
-    pieChart =  d3.select("body")
-        .append("svg")
-        .attr("width", 420)
-        .attr("height", 420)
-
     //////// QUEUE BLOCKS ////////
     var promises = [];
     promises.push(d3.csv("data/VisaDataCSV.csv"));
@@ -565,6 +560,15 @@ function isDestinationSelected(){
 
 
 function setPieChart() {
+    
+    pieChart.remove();
+    
+    pieChart =  d3.select("body")
+        .append("svg")
+        .attr("width", 420)
+        .attr("height", 420);
+
+
     // Step 3
 /*    var svg =  d3.select("body")
                  .append("svg")
