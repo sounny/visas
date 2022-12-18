@@ -540,7 +540,8 @@ function changeDestination(){
     /*var labelAttribute = "Citizen from: <b>"+origin.value+"</b>"
         + "<br>Visiting: <b>"+destination.value+"</b>"
         + "<br><b><div id='visatext"+visaNum+"'>"+visaCode(visaNum)+"</div>"+"</b>";*/
-    console.log("destination at" + destination.value);
+    console.log(destination.value);
+    window.alert("Citizen from: "+origin.value+"<br>Visiting: "+destination.value+"<br>");
 };
 
 function isOriginSelected(){
@@ -569,14 +570,6 @@ function setPieChart() {
         .attr("width", 420)
         .attr("height", 420);
 
-
-    // Step 3
-/*    var svg =  d3.select("body")
-                 .append("svg")
-                 .attr("width", 420)
-                 .attr("height", 420),*/
-
-        //d3.select("svg"),                 
     width = pieChart.attr("width"),
     height = pieChart.attr("height"),
     radius = 200;
@@ -626,7 +619,7 @@ function setPieChart() {
                         "#fef0d9",
                         "#fdcc8a",
                         "#fc8d59",
-                        "#d7301f"]);//makeWorldColorLevels(true));//['#ffd384','#94ebcd','#fbaccc','#d3e0ea','#fa7f72']);
+                        "#d7301f"]);
 
     // Step 5
     var pie = d3.pie().value(function(d) { 
