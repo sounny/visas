@@ -576,8 +576,8 @@ function setPieChart() {
 function setPieChartAgain() {
     // Step 3
     var svg = d3.select("svg"),
-    width = svg.getAttribute("width"),
-    height = svg.getAttribute("height"),
+    width = svg.attr("width"),
+    height = svg.attr("height"),
     radius = 200;
 
     // Step 1        
