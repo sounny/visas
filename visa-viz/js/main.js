@@ -617,7 +617,11 @@ function setPieChart() {
     // Step 4
     var ordScale = d3.scaleOrdinal()
                         .domain(data)
-                        .range(makeWorldColorLevels(true));//['#ffd384','#94ebcd','#fbaccc','#d3e0ea','#fa7f72']);
+                        .range(["#5A5A5A",
+                        "#fef0d9",
+                        "#fdcc8a",
+                        "#fc8d59",
+                        "#d7301f"]);//makeWorldColorLevels(true));//['#ffd384','#94ebcd','#fbaccc','#d3e0ea','#fa7f72']);
 
     // Step 5
     var pie = d3.pie().value(function(d) { 
