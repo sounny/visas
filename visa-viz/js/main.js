@@ -554,7 +554,8 @@ function setPieChart() {
     height = svg.attr("height"),
     radius = 200;
 
-    // Step 1        
+    // Step 1 
+    /*       
     var allCountries = document.getElementsByClassName("classCountry");
     for (const country of allCountries) {
         console.log(country);
@@ -564,7 +565,10 @@ function setPieChart() {
         console.log("------------------");
         //if(typeof country.properties.ADMIN !== 'undefined')
         //console.log(country.properties.ADMIN);
-    };
+    };*/
+    for(var country of countriesFeature) {
+        console.log(country);
+    }
     var typesVisa = "array";
     typesVisa["Visa not required"] = 103;
     typesVisa["eVisa"] = 30;
