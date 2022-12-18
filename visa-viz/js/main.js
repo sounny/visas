@@ -555,21 +555,28 @@ function setPieChart() {
     radius = 200;
 
     // Step 1 
-    /*       
-    var allCountries = document.getElementsByClassName("classCountry");
-    for (const country of allCountries) {
-        console.log(country);
-        console.log(country.data());
-        console.log(country.data().properties);
-        console.log(country.data().properties.ADMIN);
-        console.log("------------------");
-        //if(typeof country.properties.ADMIN !== 'undefined')
-        //console.log(country.properties.ADMIN);
-    };*/
+    var typesVisa = [];
+    typesVisa[1] = 0;
+    typesVisa[2] = 0;
+    typesVisa[3] = 0;
+    typesVisa[4] = 0;
     for(var country of countriesFeature) {
-        console.log(country.properties[expressed]);
+        switch (country.properties[expressed]) {
+            case 1:
+                typesVisa[1]++;
+                break;
+            case 2:
+                typesVisa[2]++;
+                break;
+            case 3:
+                typesVisa[3]++;
+                break;
+            case 4:
+                typesVisa[4]++;
+                break;
+        };
     }
-    var typesVisa = "array";
+    console.log(typesVisa);
     typesVisa["Visa not required"] = 103;
     typesVisa["eVisa"] = 30;
     typesVisa["Visa on Arrival"] = 35;
