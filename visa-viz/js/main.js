@@ -131,9 +131,10 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         .data(countriesFeature)
         .enter()
         .append("path")
-        .attr("class", function(d){
+        /*.attr("class", function(d){
             return d.properties.ADMIN;
-        })
+        })*/
+        .attr("class", "country")
         .attr("d", path)
         .style("fill", function(d){
             if(!isOriginSelected())
@@ -156,7 +157,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
                 destination.value = " -- Destination Country -- ";
             dehighlight(d.properties);
         })
-        .on("click", function(d){
+        /*.on("click", function(d){
             console.log(d.which);
             origin.value = d.properties.ADMIN;
             changeOrigin(countriesFeature, map, path, colorScale, d.properties.ADMIN);
@@ -167,9 +168,25 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
                 destination.value = d.properties.ADMIN;
                 changeDestination();
             }
-        })
+        })*/
         .on("mousemove", moveLabel)
         ;
+
+        $('.country').mousedown(function(event) {
+            switch (event.which) {
+                case 1:
+                    alert('Left Mouse button pressed.');
+                    break;
+                case 2:
+                    alert('Middle Mouse button pressed.');
+                    break;
+                case 3:
+                    alert('Right Mouse button pressed.');
+                    break;
+                default:
+                    alert('You have a strange Mouse!');
+            }
+        });
     
     var desc = countries.append("desc")
         .text('{"stroke": "#000", "stroke-width": "1px"}');
