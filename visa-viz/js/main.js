@@ -131,7 +131,8 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
         .attr("class", function(d){
             return d.properties.ADMIN;
         })
-        .attr("tagName", "country")
+        .attr("tagName", "tagCountry")
+        .attr("id", "idCountry")
         .attr("d", path)
         .style("fill", function(d){
             if(!isOriginSelected())
@@ -553,10 +554,24 @@ function setPieChart() {
     radius = 200;
 
     // Step 1        
-    const allCountries = map.getElementsByTagName("country");
+    var allCountries = document.getElementsByTagName("path");
     for (const country of allCountries) {
         console.log(country.ADMIN);
     };
+    allCountries = document.getElementsByTagName("tagCountry");
+    for (const country of allCountries) {
+        console.log(country.ADMIN);
+    };
+    allCountries = document.getElementById("idCountry");
+    for (const country of allCountries) {
+        console.log(country.ADMIN);
+    };
+    allCountries = document.selectAll("path");
+    for (const country of allCountries) {
+        console.log(country.ADMIN);
+    };
+
+    
     var data = [{name: "Alex", share: 20.70}, 
                 {name: "Shelly", share: 30.92},
                 {name: "Clark", share: 15.42},
