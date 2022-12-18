@@ -5,6 +5,7 @@ var csvData = "";
 //global vars for SetEnums
 var countriesFeature = "";
 var map = "";
+var path = "";
 var pieChart = "";
 var projection = "";
 var colorScale = makeWorldColorLevels();
@@ -90,7 +91,7 @@ function setWorldMap(){
         countriesFeature = joinWorldData(countriesFeature, countryVisaCSV);
         console.log(countriesFeature);
         //add enum units to the map
-        setWorldEnumerationUnits(countriesFeature, map, path, colorScale);
+        setWorldEnumerationUnits();
 
     };
 
@@ -125,7 +126,7 @@ function joinWorldData(countriesFeature, csvData){
     return countriesFeature;
 };
 
-function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
+function setWorldEnumerationUnits() {
     //add US States to map
     var countries = map.selectAll(".countries")
         .data(countriesFeature)
@@ -161,8 +162,8 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
             clickedCountry = d.properties.ADMIN;
             
             if(!isOriginSelected()) {
-            origin.value = clickedCountry;
-            changeOrigin(countriesFeature, map, path, colorScale, clickedCountry);
+                origin.value = clickedCountry;
+                changeOrigin(clickedCountry);
             } else if(isOriginSelected()) {
                 if(origin.value==clickedCountry) {
                     changeOrigin("");
@@ -532,12 +533,12 @@ function visaCode(visaNum) {
     };
 };
 
-function changeOrigin(countriesFeature, map, path, colorScale, originName) {
+function changeOrigin(originName) {
     originName = originName || origin.value;
     console.log("changing origin to " + originName);
 
     expressed=originName;
-    setWorldEnumerationUnits(countriesFeature, map, path, colorScale);
+    setWorldEnumerationUnits();
     destination.value=" -- Destination Country -- ";
     destinationSelectedBoolean = false;
     if(isOriginSelected()) {
