@@ -160,6 +160,10 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
             origin.value = d.properties.ADMIN;
             changeOrigin(countriesFeature, map, path, colorScale, d.properties.ADMIN);
         })
+        .on("dblclick", function(d){
+            destination.value = d.properties.ADMIN;
+            if(isOriginSelected()) changeDestination();
+        })
         .on("mousemove", moveLabel)
         ;
     
@@ -546,11 +550,7 @@ function changeDestination(){
     }
 
     destinationSelectedBoolean = true;
-    /*var labelAttribute = "Citizen from: <b>"+origin.value+"</b>"
-        + "<br>Visiting: <b>"+destination.value+"</b>"
-        + "<br><b><div id='visatext"+visaNum+"'>"+visaCode(visaNum)+"</div>"+"</b>";*/
-    console.log(destination.value);
-    window.alert("Citizen from: "+origin.value+"\nVisiting: "+destination.value+"\n"+visaCode(getRequirements()));
+    window.alert("Citizen from: "+origin.value+"\nVisiting: "+destination.value+"\nRequirements: "+visaCode(getRequirements()));
 };
 
 function isOriginSelected(){
