@@ -165,7 +165,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
             changeOrigin(countriesFeature, map, path, colorScale, clickedCountry);
             } else if(isOriginSelected()) {
                 if(origin.value==clickedCountry) {
-                    origin.value = "";
+                    changeOrigin("");
                 } else {
                     destination.value = clickedCountry;
                     changeDestination();
