@@ -157,7 +157,7 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
             dehighlight(d.properties);
         })
         .on("click", function(d){
-            console.log(d.where);
+            console.log(d.which);
             origin.value = d.properties.ADMIN;
             changeOrigin(countriesFeature, map, path, colorScale, d.properties.ADMIN);
         })
