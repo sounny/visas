@@ -156,11 +156,12 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
                 destination.value = " -- Destination Country -- ";
             dehighlight(d.properties);
         })
-        .on("dblclick", function(d){
+        .on("click", function(d){
+            console.log(d.where);
             origin.value = d.properties.ADMIN;
             changeOrigin(countriesFeature, map, path, colorScale, d.properties.ADMIN);
         })
-        .on("click", function(d){
+        .on("dblclick", function(d){
             
             if(isOriginSelected()) {
                 destination.value = d.properties.ADMIN;
