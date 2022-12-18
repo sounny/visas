@@ -170,8 +170,17 @@ function setWorldEnumerationUnits(countriesFeature, map, path, colorScale) {
 };
 
 //create color scale generator
-function makeWorldColorLevels(){
-    return ["#98FB98",
+function makeWorldColorLevels(skipOrigin){
+    skipOrigin = skipOrigin || false;
+    if (skipOrigin) {
+        return ["#fef0d9",
+        "#fdcc8a",
+        "#fc8d59",
+        "#d7301f",
+        "#5A5A5A"];
+    }
+    else
+        return ["#98FB98",
         "#fef0d9",
         "#fdcc8a",
         "#fc8d59",
@@ -562,6 +571,7 @@ function setPieChart() {
     typesVisa[2] = 0;
     typesVisa[3] = 0;
     typesVisa[4] = 0;
+    typesVisa[5] = 0;
     for(var country of countriesFeature) {
         switch (country.properties[expressed]) {
             case 1:
@@ -581,27 +591,27 @@ function setPieChart() {
                 break;
         };
     }
-    console.log(typesVisa);
-    typesVisa["Visa not required"] = 103;
-    typesVisa["eVisa"] = 30;
-    typesVisa["Visa on Arrival"] = 35;
-    typesVisa["Visa required"] = 25;
-    typesVisa["Restricted"] = 0;
-    
 
-    var data = [{name: "Alex", share: typesVisa[1]}, 
+    var typesVisaNames = ["Visa not required", "eVisa", "Visa on Arrival", "Visa required", "Restricted"];
+    var data = [];
+    for(let i = 0; i <= 5; i++) {
+        if(typesVisa[i]>0) 
+            data.push({name: typesVisaNames[i], share: typesVisa[i]});
+    };
+    console.log(data);
+    /*var data = [{name: "Alex", share: typesVisa[1]}, 
                     {name: "Shelly", share: typesVisa[2]},
                     {name: "Clark", share: typesVisa[3]},
                     {name: "Matt", share: typesVisa[4]},
                     {name: "Jolene", share: typesVisa[5]}];
-
+*/
     var g = svg.append("g")
             .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
     // Step 4
     var ordScale = d3.scaleOrdinal()
                         .domain(data)
-                        .range(['#ffd384','#94ebcd','#fbaccc','#d3e0ea','#fa7f72']);
+                        .range(makeWorldColorLevels(true));//['#ffd384','#94ebcd','#fbaccc','#d3e0ea','#fa7f72']);
 
     // Step 5
     var pie = d3.pie().value(function(d) { 
