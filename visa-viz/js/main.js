@@ -556,22 +556,24 @@ function setPieChart() {
     // Step 1        
     var allCountries = document.getElementsByTagName("path");
     for (const country of allCountries) {
-        console.log(country.ADMIN);
+        if(country.properties.ADMIN)
+            console.log(country.properties.ADMIN);
     };
+    /*
     allCountries = document.getElementsByTagName("tagCountry");
     for (const country of allCountries) {
         console.log(country.ADMIN);
     };
-    allCountries = document.getElementById("idCountry");
+    allCountries = document.getElementsById("idCountry");
     for (const country of allCountries) {
         console.log(country.ADMIN);
     };
     allCountries = document.selectAll("path");
     for (const country of allCountries) {
         console.log(country.ADMIN);
-    };
+    };*/
 
-    
+
     var data = [{name: "Alex", share: 20.70}, 
                 {name: "Shelly", share: 30.92},
                 {name: "Clark", share: 15.42},
