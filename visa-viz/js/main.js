@@ -550,11 +550,7 @@ function changeDestination(){
         + "<br>Visiting: <b>"+destination.value+"</b>"
         + "<br><b><div id='visatext"+visaNum+"'>"+visaCode(visaNum)+"</div>"+"</b>";*/
     console.log(destination.value);
-    window.alert("Citizen from: "+origin.value+"\nVisiting: "+destination.value+"\n");
-    console.log(getRequirements());/*result = document.getElementsByClassName(destination.value);
-    if(result.length != 1) {
-        console.log(result);
-    };*/
+    window.alert("Citizen from: "+origin.value+"\nVisiting: "+destination.value+"\n"+visaCode(getRequirements()));
 };
 
 function isOriginSelected(){
