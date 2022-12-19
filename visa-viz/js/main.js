@@ -132,10 +132,9 @@ function setWorldEnumerationUnits() {
         .data(countriesFeature)
         .enter()
         .append("path")
-        /*.attr("class", function(d){
+        .attr("class", function(d){
             return d.properties.ADMIN;
-        })*/
-        .attr("class", "country")
+        })
         .attr("d", path)
         .style("fill", function(d){
             if(!isOriginSelected())
@@ -544,8 +543,10 @@ function changeOrigin(originName) {
     if(isOriginSelected()) {
         destination.disabled=false;
     }
-    else
+    else {
+
         destination.disabled=true;
+    }
 
     setPieChart();
 
@@ -558,7 +559,7 @@ function changeDestination(){
     if(destination.value == " -- Destination Country -- ") 
         return;
 
-    destinationSelectedBoolean = true;
+    //destinationSelectedBoolean = true;
     window.alert("Citizen from: "+origin.value+"\nVisiting: "+destination.value+"\nRequirements: "+visaCode(getRequirements()));
 };
 
