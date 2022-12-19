@@ -535,7 +535,6 @@ function visaCode(visaNum) {
 
 function changeOrigin(originName) {
     originName = originName || "";
-    console.log("changing origin to " + originName);
 
     origin.value = originName;
     expressed=originName;
@@ -554,10 +553,10 @@ function changeOrigin(originName) {
 
 function changeDestination(){
 
-    if(origin.value == destination.value) {
+    if(origin.value == destination.value)
         destination.value = " -- Destination Country -- ";
+    if(destination.value == " -- Destination Country -- ") 
         return;
-    }
 
     destinationSelectedBoolean = true;
     window.alert("Citizen from: "+origin.value+"\nVisiting: "+destination.value+"\nRequirements: "+visaCode(getRequirements()));
