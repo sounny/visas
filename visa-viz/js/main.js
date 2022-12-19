@@ -537,6 +537,7 @@ function changeOrigin(originName) {
     originName = originName || "";
     console.log("changing origin to " + originName);
 
+    origin.value = originName;
     expressed=originName;
     setWorldEnumerationUnits();
     destination.value=" -- Destination Country -- ";
