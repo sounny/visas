@@ -504,6 +504,8 @@ function setPieChart() {
                     return "translate(" + label.centroid(d) + ")"; 
             })
         .attr("justify-content", "center")
+        .attr("position", "absolute")
+        .attr("text-align", "center")
         .text(function(d) { return d.data.name; })
         .style("font-family", "arial")
         .style("font-size", 15);
