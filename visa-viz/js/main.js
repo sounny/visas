@@ -304,7 +304,7 @@ function setLabel(props){
     var labelAttribute = "Citizen from: <b>"+expressed+"</b>"
         + "<br>Visiting: <b>"+props.ADMIN+"</b>"
         + "<br><b><div id='visatext"+visaNum+"'>"+visaCode(visaNum)+"</div>"+"</b>";
-    if(!expressed || props.ADMIN==origin.value) {
+    if(!expressed || expressed==" -- Country of Citizenship -- " || props.ADMIN==origin.value) {
         labelAttribute = "<h1>"+props.ADMIN+"</h1>";
     }
 
