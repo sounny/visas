@@ -366,6 +366,7 @@ function visaCode(visaNum) {
 };
 
 function changeOrigin(originName) {
+    console.log(origin.value);
     originName = originName || "";
 
     origin.value = originName;
