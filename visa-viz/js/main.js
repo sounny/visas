@@ -370,7 +370,10 @@ function changeOrigin(originName) {
     //originName = originName || "";
 
     //origin.value = originName;
-    expressed=origin.value;//originName;
+    if (originName == " -- Country of Citizenship -- ")
+        expressed=originName;
+    else
+        expressed=origin.value;//originName;
     setWorldEnumerationUnits();
     destination.value=" -- Destination Country -- ";
     destinationSelectedBoolean = false;
