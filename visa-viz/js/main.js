@@ -11,6 +11,7 @@ var projection = "";
 var colorScale = makeWorldColorLevels();
 ////global html elements
 header = document.getElementById("header");
+instructions = document.getElementById("instructions");
 origin = document.getElementById("originSelect");
 destination = document.getElementById("destinationSelect");
 destinationSelectedBoolean = false;
@@ -177,6 +178,9 @@ function setWorldEnumerationUnits() {
 
     var desc = countries.append("desc")
         .text('{"stroke": "#000", "stroke-width": "1px"}');
+
+    if(!isOriginSelected()) instructions.innerHTML = "Click/Select a Country of CITIZENSHIP";
+    if(isOriginSelected() && !isDestinationSelected()) instructions.innerHTML = "Click/Select a DESTINATION Country";
 };
 
 //create color scale generator
@@ -300,7 +304,7 @@ function setLabel(props){
     var labelAttribute = "Citizen from: <b>"+expressed+"</b>"
         + "<br>Visiting: <b>"+props.ADMIN+"</b>"
         + "<br><b><div id='visatext"+visaNum+"'>"+visaCode(visaNum)+"</div>"+"</b>";
-    if(!expressed) {
+    if(!expressed || expressed==origin.value) {
         labelAttribute = "<h1>"+props.ADMIN+"</h1>";
     }
 
