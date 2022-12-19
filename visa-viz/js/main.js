@@ -166,7 +166,7 @@ function setWorldEnumerationUnits() {
                 changeOrigin(clickedCountry);
             } else if(isOriginSelected()) {
                 if(origin.value==clickedCountry) {
-                    changeOrigin("");
+                    changeOrigin(" -- Country of Citizenship -- ");
                 } else {
                     destination.value = clickedCountry;
                     changeDestination();
