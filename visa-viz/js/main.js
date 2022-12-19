@@ -366,11 +366,11 @@ function visaCode(visaNum) {
 };
 
 function changeOrigin(originName) {
-    console.log(origin.value);
-    originName = originName || "";
+    //console.log(origin.value);
+    //originName = originName || "";
 
-    origin.value = originName;
-    expressed=originName;
+    //origin.value = originName;
+    expressed=origin.value;//originName;
     setWorldEnumerationUnits();
     destination.value=" -- Destination Country -- ";
     destinationSelectedBoolean = false;
